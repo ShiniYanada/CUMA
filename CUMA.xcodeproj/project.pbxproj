@@ -24,6 +24,7 @@
 		36C2B3862361D2B700D5D5CB /* HourCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C2B3842361D2B700D5D5CB /* HourCell.swift */; };
 		36C2B3872361D2B700D5D5CB /* HourCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36C2B3852361D2B700D5D5CB /* HourCell.xib */; };
 		36C2B3892362DF9B00D5D5CB /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C2B3882362DF9B00D5D5CB /* DetailViewController.swift */; };
+		986F92B9C92AD502950D54CD /* Pods_CUMA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68F060689FAFBF8B59DC53D3 /* Pods_CUMA.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,9 @@
 		36C2B3842361D2B700D5D5CB /* HourCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourCell.swift; sourceTree = "<group>"; };
 		36C2B3852361D2B700D5D5CB /* HourCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HourCell.xib; sourceTree = "<group>"; };
 		36C2B3882362DF9B00D5D5CB /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		68F060689FAFBF8B59DC53D3 /* Pods_CUMA.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CUMA.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7E1F6EE1FA03D8EF09C06B64 /* Pods-CUMA.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CUMA.release.xcconfig"; path = "Pods/Target Support Files/Pods-CUMA/Pods-CUMA.release.xcconfig"; sourceTree = "<group>"; };
+		EAF0C9EAD09130E08F75F7E8 /* Pods-CUMA.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CUMA.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CUMA/Pods-CUMA.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				986F92B9C92AD502950D54CD /* Pods_CUMA.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -64,6 +69,8 @@
 			children = (
 				36C2B365236136AC00D5D5CB /* CUMA */,
 				36C2B364236136AC00D5D5CB /* Products */,
+				8B706CEBBD0E6089771D1AF3 /* Pods */,
+				C05EBC0E6E39CCA71FDC13FB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -100,6 +107,23 @@
 			path = CUMA;
 			sourceTree = "<group>";
 		};
+		8B706CEBBD0E6089771D1AF3 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				EAF0C9EAD09130E08F75F7E8 /* Pods-CUMA.debug.xcconfig */,
+				7E1F6EE1FA03D8EF09C06B64 /* Pods-CUMA.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		C05EBC0E6E39CCA71FDC13FB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				68F060689FAFBF8B59DC53D3 /* Pods_CUMA.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -107,9 +131,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 36C2B377236136B000D5D5CB /* Build configuration list for PBXNativeTarget "CUMA" */;
 			buildPhases = (
+				FEF12ADA361134209BDE5BB0 /* [CP] Check Pods Manifest.lock */,
 				36C2B35F236136AC00D5D5CB /* Sources */,
 				36C2B360236136AC00D5D5CB /* Frameworks */,
 				36C2B361236136AC00D5D5CB /* Resources */,
+				FC53429E863B221ABCFEB183 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -169,6 +195,45 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		FC53429E863B221ABCFEB183 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-CUMA/Pods-CUMA-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/InstantSearchClient/InstantSearchClient.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/InstantSearchClient.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CUMA/Pods-CUMA-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FEF12ADA361134209BDE5BB0 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CUMA-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		36C2B35F236136AC00D5D5CB /* Sources */ = {
@@ -326,6 +391,7 @@
 		};
 		36C2B378236136B000D5D5CB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EAF0C9EAD09130E08F75F7E8 /* Pods-CUMA.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -344,6 +410,7 @@
 		};
 		36C2B379236136B000D5D5CB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7E1F6EE1FA03D8EF09C06B64 /* Pods-CUMA.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

@@ -7,11 +7,14 @@
 //
 
 import UIKit
+import InstantSearchClient
 
 class TimeTableSearchViewController: UIViewController {
     
     var searchController:  UISearchController!
     @IBOutlet weak var tableView: UITableView!
+    var client: Client!
+    var index: Index!
     
     private let titles = [
         "row1",  "row2",  "row3",  "row4",  "row5",
@@ -37,6 +40,10 @@ class TimeTableSearchViewController: UIViewController {
         // iOS11未満は別途処理が必要
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = true
+        
+        client = Client(appID: "J7JWGV6TIF", apiKey: "b3750fec1bafdbd445f4a15c1c1d7364")
+        index = client.index(withName: "syllabus")
+        
     }
     
 
