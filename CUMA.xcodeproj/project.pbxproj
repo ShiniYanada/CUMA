@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		3607C72C2363E9ED0043C108 /* TimeTableISearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3607C72B2363E9ED0043C108 /* TimeTableISearchViewController.swift */; };
+		364229B7236C02D200625188 /* Lesson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364229B6236C02D200625188 /* Lesson.swift */; };
+		364229B9236C61CA00625188 /* ClassDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364229B8236C61CA00625188 /* ClassDetailViewController.swift */; };
 		367A34B1236A774D000458EC /* ClassCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367A34AF236A774D000458EC /* ClassCell.swift */; };
 		367A34B2236A774D000458EC /* ClassCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 367A34B0236A774D000458EC /* ClassCell.xib */; };
 		36C2B367236136AC00D5D5CB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C2B366236136AC00D5D5CB /* AppDelegate.swift */; };
@@ -23,12 +25,13 @@
 		36C2B3832361A3AD00D5D5CB /* TimeTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36C2B3812361A3AD00D5D5CB /* TimeTableCell.xib */; };
 		36C2B3862361D2B700D5D5CB /* HourCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C2B3842361D2B700D5D5CB /* HourCell.swift */; };
 		36C2B3872361D2B700D5D5CB /* HourCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36C2B3852361D2B700D5D5CB /* HourCell.xib */; };
-		36C2B3892362DF9B00D5D5CB /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C2B3882362DF9B00D5D5CB /* DetailViewController.swift */; };
 		986F92B9C92AD502950D54CD /* Pods_CUMA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68F060689FAFBF8B59DC53D3 /* Pods_CUMA.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		3607C72B2363E9ED0043C108 /* TimeTableISearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableISearchViewController.swift; sourceTree = "<group>"; };
+		364229B6236C02D200625188 /* Lesson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lesson.swift; sourceTree = "<group>"; };
+		364229B8236C61CA00625188 /* ClassDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassDetailViewController.swift; sourceTree = "<group>"; };
 		367A34AF236A774D000458EC /* ClassCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassCell.swift; sourceTree = "<group>"; };
 		367A34B0236A774D000458EC /* ClassCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ClassCell.xib; sourceTree = "<group>"; };
 		36C2B363236136AC00D5D5CB /* CUMA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CUMA.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -46,7 +49,6 @@
 		36C2B3812361A3AD00D5D5CB /* TimeTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TimeTableCell.xib; sourceTree = "<group>"; };
 		36C2B3842361D2B700D5D5CB /* HourCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourCell.swift; sourceTree = "<group>"; };
 		36C2B3852361D2B700D5D5CB /* HourCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HourCell.xib; sourceTree = "<group>"; };
-		36C2B3882362DF9B00D5D5CB /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		68F060689FAFBF8B59DC53D3 /* Pods_CUMA.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CUMA.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E1F6EE1FA03D8EF09C06B64 /* Pods-CUMA.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CUMA.release.xcconfig"; path = "Pods/Target Support Files/Pods-CUMA/Pods-CUMA.release.xcconfig"; sourceTree = "<group>"; };
 		EAF0C9EAD09130E08F75F7E8 /* Pods-CUMA.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CUMA.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CUMA/Pods-CUMA.debug.xcconfig"; sourceTree = "<group>"; };
@@ -89,12 +91,13 @@
 				36C2B368236136AC00D5D5CB /* SceneDelegate.swift */,
 				36C2B36A236136AC00D5D5CB /* ViewController.swift */,
 				36C2B36C236136AC00D5D5CB /* Main.storyboard */,
+				364229B8236C61CA00625188 /* ClassDetailViewController.swift */,
 				367A34AF236A774D000458EC /* ClassCell.swift */,
 				367A34B0236A774D000458EC /* ClassCell.xib */,
-				36C2B3882362DF9B00D5D5CB /* DetailViewController.swift */,
 				36C2B37C23613D3700D5D5CB /* DayCell.swift */,
 				36C2B37D23613D3700D5D5CB /* DayCell.xib */,
 				36C2B37A23613A8E00D5D5CB /* TimeTableViewController.swift */,
+				364229B6236C02D200625188 /* Lesson.swift */,
 				3607C72B2363E9ED0043C108 /* TimeTableISearchViewController.swift */,
 				36C2B3842361D2B700D5D5CB /* HourCell.swift */,
 				36C2B3852361D2B700D5D5CB /* HourCell.xib */,
@@ -251,7 +254,8 @@
 				36C2B37B23613A8E00D5D5CB /* TimeTableViewController.swift in Sources */,
 				36C2B369236136AC00D5D5CB /* SceneDelegate.swift in Sources */,
 				36C2B3822361A3AD00D5D5CB /* TimeTableCell.swift in Sources */,
-				36C2B3892362DF9B00D5D5CB /* DetailViewController.swift in Sources */,
+				364229B9236C61CA00625188 /* ClassDetailViewController.swift in Sources */,
+				364229B7236C02D200625188 /* Lesson.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

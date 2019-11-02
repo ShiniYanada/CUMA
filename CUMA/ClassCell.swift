@@ -25,4 +25,10 @@ class ClassCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    func setup(lesson: Lesson){
+        courseTitleLabel.text = lesson.course
+        teacherLabel.text = lesson.teacher
+        classRoomLabel.text = lesson.room
+    }
+    
 }
