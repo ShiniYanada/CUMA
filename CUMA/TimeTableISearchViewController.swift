@@ -50,17 +50,10 @@ class TimeTableSearchViewController: UIViewController {
         })
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        print("prepare")
-        if segue.identifier == "ClassDetailSegue" {
-            let classDetailViewController: ClassDetailViewController = segue.destination as! ClassDetailViewController
-            let indexPath = self.tableView.indexPathForSelectedRow
-            print(indexPath!.row)
-            print(classes[indexPath!.row])
-            classDetailViewController.lesson = classes[indexPath!.row]
-        }
+    @objc func registerClass(_ sender: UIButton) {
+        print("tapped")
+        print(sender.tag)
     }
-    
 
     /*
     // MARK: - Navigation
@@ -71,6 +64,16 @@ class TimeTableSearchViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        print("prepare")
+        if segue.identifier == "ClassDetailSegue" {
+            let classDetailViewController: ClassDetailViewController = segue.destination as! ClassDetailViewController
+            let indexPath = self.tableView.indexPathForSelectedRow
+            print(indexPath!.row)
+            print(classes[indexPath!.row])
+            classDetailViewController.lesson = classes[indexPath!.row]
+        }
+    }
 
 }
 
@@ -89,6 +92,8 @@ extension TimeTableSearchViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let classCell = tableView.dequeueReusableCell(withIdentifier: "ClassCell", for: indexPath) as! ClassCell
         classCell.setup(lesson: self.classes[indexPath.row])
+        classCell.registerClassBtn.tag = indexPath.row
+        classCell.registerClassBtn.addTarget(self, action: #selector(registerClass(_:)), for: .touchUpInside)
         return classCell
     }
     

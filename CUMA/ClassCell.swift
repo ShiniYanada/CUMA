@@ -13,6 +13,7 @@ class ClassCell: UITableViewCell {
     @IBOutlet weak var courseTitleLabel: UILabel!
     @IBOutlet weak var teacherLabel: UILabel!
     @IBOutlet weak var classRoomLabel: UILabel!
+    @IBOutlet weak var registerClassBtn: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
