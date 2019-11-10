@@ -10,10 +10,7 @@ import UIKit
 import WebKit
 
 class TimeTableViewController: UIViewController {
-
     @IBOutlet weak var timeTableCollectionView: UICollectionView!
-    var webView: WKWebView!
-    let urlString = "https://cup.chiba-u.jp/campusweb/campusportal.do"
     
     //曜日の配列
     let days = ["", "月", "火", "水", "木", "金", "土", "日"]
@@ -24,16 +21,12 @@ class TimeTableViewController: UIViewController {
     //表示する曜日の時限数
     let numberOfHours = 6
     //時限の開始時間と終了時間の配列
-    let startTimes = ["08:50", "10:30", "12:50", "14:30", "16:10", "17:50"]
-    let finishTimes = ["10:20", "12:00", "14:20", "16:00", "17:40", "19:20"]
+    let startTimes = ["08:50", "10:30", "12:50", "14:30", "16:10", "17:50", "19:30"]
+    let finishTimes = ["10:20", "12:00", "14:20", "16:00", "17:40", "19:20", "21:00"]
     
-    //左上の何も表示しないセルの幅と高さ
-    let blankSpaceWidth: CGFloat = 60.0
-    let blankSpaceHeight: CGFloat = 60.0
-    //時間割を表示するセルの高さ
-    let timeTableCellHeight: CGFloat = 130.0
-    //セル間の余白
-    let cellMargin: CGFloat = 1.0
+    let hourWidth: CGFloat = 60
+    let dayHeight: CGFloat = 40
+    let timeTableHeight: CGFloat = 140
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,6 +39,11 @@ class TimeTableViewController: UIViewController {
         timeTableCollectionView.register(UINib(nibName: "HourCell", bundle: nil), forCellWithReuseIdentifier: "HourCell")
     }
     
+    override func viewDidLayoutSubviews() {
+        timeTableCollectionView.collectionViewLayout = createCompositionalLayout()
+        super.viewDidLayoutSubviews()
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "TimeTableSearchSegue" {
             let indexPath = sender as! IndexPath
@@ -55,12 +53,61 @@ class TimeTableViewController: UIViewController {
             timeTableInputViewController.navigationItem.title = "\(fullNameDays[dayIndex]) \(hoursName[hourIndex])"
         }
     }
+    
+    func createCompositionalLayout() -> UICollectionViewLayout {
+        let layout = UICollectionViewCompositionalLayout {
+            (sectionIndex: Int,
+            layoutEnvironment: NSCollectionLayoutEnvironment)
+              -> NSCollectionLayoutSection? in
+            
+            switch sectionIndex {
+            case 0:
+                return self.createDayLayout()
+            case 1:
+                return self.createTimeTableLayout()
+            default:
+                return self.createTimeTableLayout()
+            }
+        }
+        return layout
+        
+    }
+    
+    func createDayLayout() -> NSCollectionLayoutSection {
+        let houtItem = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .absolute(hourWidth), heightDimension: .fractionalHeight(1.0)))
+        
+        let dayItem = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.2), heightDimension: .fractionalHeight(1.0)))
+        
+        let dayGroup = NSCollectionLayoutGroup.horizontal(layoutSize: NSCollectionLayoutSize(widthDimension: .absolute(timeTableCollectionView.frame.width - hourWidth), heightDimension: .fractionalHeight(1.0)), subitem: dayItem, count: numberOfDays)
+        
+        let nestedGroup = NSCollectionLayoutGroup.horizontal(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(dayHeight)), subitems: [houtItem, dayGroup])
+        
+        let section = NSCollectionLayoutSection(group: nestedGroup)
+        
+        return section
+    }
+    
+    func createTimeTableLayout() -> NSCollectionLayoutSection {
+        let houtItem = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .absolute(hourWidth), heightDimension: .fractionalHeight(1.0)))
+        
+        let dayItem = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.2), heightDimension: .fractionalHeight(1.0)))
+        
+        let dayGroup = NSCollectionLayoutGroup.horizontal(layoutSize: NSCollectionLayoutSize(widthDimension: .absolute(timeTableCollectionView.frame.width - hourWidth), heightDimension: .fractionalHeight(1.0)), subitem: dayItem, count: numberOfDays)
+        
+        let nestedGroup = NSCollectionLayoutGroup.horizontal(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(timeTableHeight)), subitems: [houtItem, dayGroup])
+        
+        let section = NSCollectionLayoutSection(group: nestedGroup)
+        
+        return section
+    }
 }
 
 extension TimeTableViewController: UICollectionViewDataSource {
+    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 2
     }
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if (section == 0) {
             return numberOfDays + 1
@@ -70,6 +117,7 @@ extension TimeTableViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        print("cellforitemat")
         if (indexPath.section == 0) {
             let dayCell = collectionView.dequeueReusableCell(withReuseIdentifier: "DayCell", for: indexPath) as! DayCell
             dayCell.backgroundColor = .red
@@ -110,35 +158,4 @@ extension TimeTableViewController: UICollectionViewDelegate {
         performSegue(withIdentifier: "TimeTableSearchSegue", sender: indexPath)
         print("Selected: \(indexPath.row)")
     }
-}
-
-extension TimeTableViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
-        let numberOfRow = CGFloat(numberOfDays)
-        let width = (collectionView.frame.width - blankSpaceWidth - cellMargin * numberOfRow) / numberOfRow
-        
-        if (indexPath.section == 0) {
-            if (indexPath.row == 0) {
-                return CGSize(width: blankSpaceWidth, height: blankSpaceHeight)
-            } else {
-                return CGSize(width: width, height: blankSpaceHeight)
-            }
-        } else {
-            if (indexPath.row % (numberOfDays + 1) == 0) {
-                return CGSize(width: blankSpaceWidth, height: timeTableCellHeight)
-            } else {
-                return CGSize(width: width, height: timeTableCellHeight)
-            }
-        }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        cellMargin
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return cellMargin
-    }
-
 }
