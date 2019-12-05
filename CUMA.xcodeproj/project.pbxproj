@@ -14,6 +14,8 @@
 		364E00C1237ADB0C0027A053 /* TimeTableSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364E00C0237ADB0C0027A053 /* TimeTableSettingViewController.swift */; };
 		367A34B1236A774D000458EC /* ClassCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367A34AF236A774D000458EC /* ClassCell.swift */; };
 		367A34B2236A774D000458EC /* ClassCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 367A34B0236A774D000458EC /* ClassCell.xib */; };
+		369D9626237D047E000C2616 /* TimeTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369D9625237D047E000C2616 /* TimeTable.swift */; };
+		369D962F237D87A3000C2616 /* default-compact.realm in Resources */ = {isa = PBXBuildFile; fileRef = 369D962E237D8796000C2616 /* default-compact.realm */; };
 		36C2B367236136AC00D5D5CB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C2B366236136AC00D5D5CB /* AppDelegate.swift */; };
 		36C2B369236136AC00D5D5CB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C2B368236136AC00D5D5CB /* SceneDelegate.swift */; };
 		36C2B36B236136AC00D5D5CB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C2B36A236136AC00D5D5CB /* ViewController.swift */; };
@@ -36,6 +38,8 @@
 		364E00C0237ADB0C0027A053 /* TimeTableSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableSettingViewController.swift; sourceTree = "<group>"; };
 		367A34AF236A774D000458EC /* ClassCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassCell.swift; sourceTree = "<group>"; };
 		367A34B0236A774D000458EC /* ClassCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ClassCell.xib; sourceTree = "<group>"; };
+		369D9625237D047E000C2616 /* TimeTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTable.swift; sourceTree = "<group>"; };
+		369D962E237D8796000C2616 /* default-compact.realm */ = {isa = PBXFileReference; lastKnownFileType = file; path = "default-compact.realm"; sourceTree = "<group>"; };
 		36C2B363236136AC00D5D5CB /* CUMA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CUMA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		36C2B366236136AC00D5D5CB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		36C2B368236136AC00D5D5CB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -93,8 +97,10 @@
 				36C2B36C236136AC00D5D5CB /* Main.storyboard */,
 				364229B8236C61CA00625188 /* ClassDetailViewController.swift */,
 				364E00BA237919D40027A053 /* TimeTableListViewController.swift */,
+				369D9625237D047E000C2616 /* TimeTable.swift */,
 				367A34AF236A774D000458EC /* ClassCell.swift */,
 				367A34B0236A774D000458EC /* ClassCell.xib */,
+				369D962E237D8796000C2616 /* default-compact.realm */,
 				36C2B37A23613A8E00D5D5CB /* TimeTableViewController.swift */,
 				364229B6236C02D200625188 /* Lesson.swift */,
 				3607C72B2363E9ED0043C108 /* TimeTableISearchViewController.swift */,
@@ -187,6 +193,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				369D962F237D87A3000C2616 /* default-compact.realm in Resources */,
 				36C2B373236136B000D5D5CB /* LaunchScreen.storyboard in Resources */,
 				36C2B3872361D2B700D5D5CB /* HourCell.xib in Resources */,
 				36C2B3832361A3AD00D5D5CB /* TimeTableCell.xib in Resources */,
@@ -257,6 +264,7 @@
 				367A34B1236A774D000458EC /* ClassCell.swift in Sources */,
 				36C2B37B23613A8E00D5D5CB /* TimeTableViewController.swift in Sources */,
 				36C2B369236136AC00D5D5CB /* SceneDelegate.swift in Sources */,
+				369D9626237D047E000C2616 /* TimeTable.swift in Sources */,
 				36C2B3822361A3AD00D5D5CB /* TimeTableCell.swift in Sources */,
 				364229B9236C61CA00625188 /* ClassDetailViewController.swift in Sources */,
 				364229B7236C02D200625188 /* Lesson.swift in Sources */,
