@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,6 +16,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        let defaultURL = Realm.Configuration.defaultConfiguration.fileURL!
+        
+        if FileManager.default.fileExists(atPath: defaultURL.path) {
+            print("exist")
+        } else {
+            print("not exist")
+            let bundleRealmPath = Bundle.main.url(forResource: "default-compact", withExtension: "realm")
+            do {
+                try FileManager.default.copyItem(at: bundleRealmPath!, to: defaultURL)
+            } catch { print("coppy error ")}
+        }
+        
         return true
     }
 
