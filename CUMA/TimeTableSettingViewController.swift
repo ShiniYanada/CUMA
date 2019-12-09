@@ -31,8 +31,11 @@ class TimeTableSettingViewController: UIViewController {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
         if (segue.identifier == "SellectingDaySegue") {
-            let timeTableSellectingDayItemViewController: TimeTableSettingDayItemViewController = segue.destination as! TimeTableSettingDayItemViewController
-            timeTableSellectingDayItemViewController.navigationItem.title = "曜日の変更"
+            let timeTableSettingDayItemViewController: TimeTableSettingDayItemViewController = segue.destination as! TimeTableSettingDayItemViewController
+            timeTableSettingDayItemViewController.navigationItem.title = "曜日の変更"
+        } else if (segue.identifier == "SellectingPeriodSegue") {
+            let timeTableSettingPeriodItemViewController: TimeTableSettingPeriodItemViewController = segue.destination as! TimeTableSettingPeriodItemViewController
+            timeTableSettingPeriodItemViewController.navigationItem.title = "最大時限数"
         }
     }
 }
@@ -62,7 +65,13 @@ extension TimeTableSettingViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-           self.performSegue(withIdentifier: "SellectingDaySegue", sender: nil)
+        if (indexPath.section == 1) {
+            if (indexPath.row == 0) {
+                self.performSegue(withIdentifier: "SellectingDaySegue", sender: nil)
+            } else if (indexPath.row == 1) {
+                self.performSegue(withIdentifier: "SellectingPeriodSegue", sender: nil)
+            }
+        }
     }
     
 }
