@@ -5,6 +5,7 @@
 //  Created by 簗田信緯 on 2019/11/01.
 //  Copyright © 2019 Shini Yanada. All rights reserved.
 //
+//授業の詳細のView
 
 import UIKit
 

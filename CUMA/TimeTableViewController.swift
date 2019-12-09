@@ -5,9 +5,10 @@
 //  Created by 簗田信緯 on 2019/10/24.
 //  Copyright © 2019 Shini Yanada. All rights reserved.
 //
+//時間割を表示しているView
 
 import UIKit
-import WebKit
+import RealmSwift
 
 class TimeTableViewController: UIViewController {
     @IBOutlet weak var timeTableCollectionView: UICollectionView!

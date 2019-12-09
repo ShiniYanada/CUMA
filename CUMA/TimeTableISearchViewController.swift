@@ -5,6 +5,7 @@
 //  Created by 簗田信緯 on 2019/10/26.
 //  Copyright © 2019 Shini Yanada. All rights reserved.
 //
+//指定された曜日、時限の時間割を検索して表示するView
 
 import UIKit
 import InstantSearchClient
@@ -104,7 +105,7 @@ extension TimeTableSearchViewController: UITableViewDataSource {
 
 extension TimeTableSearchViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "ClassDetailSegue", sender: indexPath)
+        performSegue(withIdentifier: "ClassDetailSegue", sender: nil)
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }

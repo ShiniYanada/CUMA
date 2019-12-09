@@ -5,6 +5,7 @@
 //  Created by 簗田信緯 on 2019/11/11.
 //  Copyright © 2019 Shini Yanada. All rights reserved.
 //
+// 作成している時間割の一覧を表示するView
 
 import UIKit
 
