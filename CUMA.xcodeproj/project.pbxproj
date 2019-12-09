@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,6 +13,7 @@
 		364E00BB237919D40027A053 /* TimeTableListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364E00BA237919D40027A053 /* TimeTableListViewController.swift */; };
 		36517420239CEEBC009A54EB /* TimeTableSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3651741F239CEEBC009A54EB /* TimeTableSettingViewController.swift */; };
 		3651742E239E11A8009A54EB /* TimeTableSettingDayItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3651742D239E11A8009A54EB /* TimeTableSettingDayItemViewController.swift */; };
+		36517431239E6B9B009A54EB /* TimeTableSettingPeriodItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36517430239E6B9B009A54EB /* TimeTableSettingPeriodItemViewController.swift */; };
 		367A34B1236A774D000458EC /* ClassCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367A34AF236A774D000458EC /* ClassCell.swift */; };
 		367A34B2236A774D000458EC /* ClassCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 367A34B0236A774D000458EC /* ClassCell.xib */; };
 		369D9626237D047E000C2616 /* TimeTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369D9625237D047E000C2616 /* TimeTable.swift */; };
@@ -38,6 +39,7 @@
 		364E00BA237919D40027A053 /* TimeTableListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableListViewController.swift; sourceTree = "<group>"; };
 		3651741F239CEEBC009A54EB /* TimeTableSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableSettingViewController.swift; sourceTree = "<group>"; };
 		3651742D239E11A8009A54EB /* TimeTableSettingDayItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableSettingDayItemViewController.swift; sourceTree = "<group>"; };
+		36517430239E6B9B009A54EB /* TimeTableSettingPeriodItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableSettingPeriodItemViewController.swift; sourceTree = "<group>"; };
 		367A34AF236A774D000458EC /* ClassCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassCell.swift; sourceTree = "<group>"; };
 		367A34B0236A774D000458EC /* ClassCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ClassCell.xib; sourceTree = "<group>"; };
 		369D9625237D047E000C2616 /* TimeTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTable.swift; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 				367A34AF236A774D000458EC /* ClassCell.swift */,
 				367A34B0236A774D000458EC /* ClassCell.xib */,
 				3651742D239E11A8009A54EB /* TimeTableSettingDayItemViewController.swift */,
+				36517430239E6B9B009A54EB /* TimeTableSettingPeriodItemViewController.swift */,
 				369D962E237D8796000C2616 /* default-compact.realm */,
 				36C2B37A23613A8E00D5D5CB /* TimeTableViewController.swift */,
 				3651741F239CEEBC009A54EB /* TimeTableSettingViewController.swift */,
@@ -260,6 +263,7 @@
 				36C2B367236136AC00D5D5CB /* AppDelegate.swift in Sources */,
 				367A34B1236A774D000458EC /* ClassCell.swift in Sources */,
 				36C2B37B23613A8E00D5D5CB /* TimeTableViewController.swift in Sources */,
+				36517431239E6B9B009A54EB /* TimeTableSettingPeriodItemViewController.swift in Sources */,
 				36C2B369236136AC00D5D5CB /* SceneDelegate.swift in Sources */,
 				369D9626237D047E000C2616 /* TimeTable.swift in Sources */,
 				36C2B3822361A3AD00D5D5CB /* TimeTableCell.swift in Sources */,

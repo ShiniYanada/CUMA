@@ -367,11 +367,62 @@
                     <connections>
                         <outlet property="tableView" destination="WTh-DL-QYo" id="t9a-JS-dae"/>
                         <segue destination="jzR-cB-6FU" kind="show" identifier="SellectingDaySegue" id="3kE-7D-Sll"/>
+                        <segue destination="QH8-rS-SLb" kind="show" identifier="SellectingPeriodSegue" id="Gjw-6c-qKA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pzy-Yd-Lfw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3815.9420289855075" y="-84.375"/>
+        </scene>
+        <!--時限数-->
+        <scene sceneID="MS9-La-SEj">
+            <objects>
+                <viewController id="QH8-rS-SLb" customClass="TimeTableSettingPeriodItemViewController" customModule="CUMA" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8QB-Uj-p5C">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="zdk-pj-Bsg">
+                                <rect key="frame" x="0.0" y="56" width="414" height="752"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PeriodItemCell" textLabel="B9I-ts-JKm" style="IBUITableViewCellStyleDefault" id="9i5-gr-pR3">
+                                        <rect key="frame" x="0.0" y="55.333332061767578" width="414" height="43.666667938232422"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9i5-gr-pR3" id="f5g-6v-JdI">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="B9I-ts-JKm">
+                                                    <rect key="frame" x="20" y="0.0" width="374" height="43.666667938232422"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="zdk-pj-Bsg" firstAttribute="top" secondItem="lCp-vN-33v" secondAttribute="top" id="1jm-3x-mPg"/>
+                            <constraint firstItem="lCp-vN-33v" firstAttribute="trailing" secondItem="zdk-pj-Bsg" secondAttribute="trailing" id="dDQ-Mz-e70"/>
+                            <constraint firstItem="zdk-pj-Bsg" firstAttribute="leading" secondItem="lCp-vN-33v" secondAttribute="leading" id="nEK-Ci-k6L"/>
+                            <constraint firstItem="lCp-vN-33v" firstAttribute="bottom" secondItem="zdk-pj-Bsg" secondAttribute="bottom" id="xUJ-DS-wrw"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="lCp-vN-33v"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="時限数" id="mFz-Vt-cvg"/>
+                    <connections>
+                        <outlet property="tableView" destination="zdk-pj-Bsg" id="a59-hw-LPH"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7qy-XT-kBD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4712" y="38"/>
         </scene>
         <!--Time Table Setting Day Item View Controller-->
         <scene sceneID="uQG-kZ-RdO">
@@ -421,7 +472,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HcW-VK-sCq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4562" y="-84"/>
+            <point key="canvasLocation" x="4712" y="-678"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="udC-vE-feN">
