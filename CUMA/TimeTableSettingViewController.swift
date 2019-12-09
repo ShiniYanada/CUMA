@@ -34,7 +34,7 @@ class TimeTableSettingViewController: UIViewController {
             let timeTableSettingDayItemViewController: TimeTableSettingDayItemViewController = segue.destination as! TimeTableSettingDayItemViewController
             timeTableSettingDayItemViewController.navigationItem.title = "曜日の変更"
         } else if (segue.identifier == "SellectingPeriodSegue") {
-            let timeTableSettingPeriodItemViewController: TimeTableSettingPeriodItemViewController = segue.destination as! TimeTableSettingPeriodItemViewController
+            let timeTableSettingPeriodItemViewController: TimeTableSettingHourItemViewController = segue.destination as! TimeTableSettingHourItemViewController
             timeTableSettingPeriodItemViewController.navigationItem.title = "最大時限数"
         }
     }

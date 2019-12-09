@@ -374,10 +374,10 @@
             </objects>
             <point key="canvasLocation" x="3815.9420289855075" y="-84.375"/>
         </scene>
-        <!--時限数-->
+        <!--Time Table Setting Hour Item View Controller-->
         <scene sceneID="MS9-La-SEj">
             <objects>
-                <viewController id="QH8-rS-SLb" customClass="TimeTableSettingPeriodItemViewController" customModule="CUMA" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="QH8-rS-SLb" customClass="TimeTableSettingHourItemViewController" customModule="CUMA" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8QB-Uj-p5C">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -415,9 +415,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="lCp-vN-33v"/>
                     </view>
-                    <navigationItem key="navigationItem" title="時限数" id="mFz-Vt-cvg"/>
+                    <navigationItem key="navigationItem" id="mFz-Vt-cvg"/>
                     <connections>
-                        <outlet property="tableView" destination="zdk-pj-Bsg" id="a59-hw-LPH"/>
+                        <outlet property="tableView" destination="zdk-pj-Bsg" id="NxB-ka-6QF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7qy-XT-kBD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

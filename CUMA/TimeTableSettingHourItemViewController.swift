@@ -1,5 +1,5 @@
 //
-//  TimeTableSettingPeriodItemViewController.swift
+//  TimeTableSettingHourItemViewController.swift
 //  CUMA
 //
 //  Created by 簗田信緯 on 2019/12/09.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TimeTableSettingPeriodItemViewController: UIViewController {
+class TimeTableSettingHourItemViewController: UIViewController {
 
     let periodItem = ["5", "6", "7", "8", "9", "10"]
     @IBOutlet weak var tableView: UITableView!
@@ -34,7 +34,7 @@ class TimeTableSettingPeriodItemViewController: UIViewController {
 
 }
 
-extension TimeTableSettingPeriodItemViewController: UITableViewDelegate {
+extension TimeTableSettingHourItemViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)
         cell?.accessoryType = .checkmark
@@ -46,7 +46,7 @@ extension TimeTableSettingPeriodItemViewController: UITableViewDelegate {
     }
 }
 
-extension TimeTableSettingPeriodItemViewController: UITableViewDataSource {
+extension TimeTableSettingHourItemViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 6
     }
