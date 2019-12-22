@@ -7,11 +7,14 @@
 //
 
 import UIKit
+import RealmSwift
 
 class TimeTableSettingViewController: UIViewController {
 
-    let settingTitle = [["時間割名"], ["曜日", "時限"]]
-
+    let settingTitles = [["時間割名"], ["曜日", "時限"]]
+    let days = ["平日のみ", "平日+土", "平日+土日"]
+    var timeTable: TimeTable!
+    
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
@@ -20,6 +23,12 @@ class TimeTableSettingViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         // Do any additional setup after loading the view.
+        do {
+            let realm = try Realm()
+            timeTable = realm.objects(TimeTable.self).filter("selected == true").first
+        } catch {
+            print("realm error")
+        }
     }
     
 
@@ -59,8 +68,17 @@ extension TimeTableSettingViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TimeTableSettingInputCell", for: indexPath)
-        cell.textLabel?.text = self.settingTitle[indexPath.section][indexPath.row]
-        cell.detailTextLabel?.text = "test"
+        cell.textLabel?.text = self.settingTitles[indexPath.section][indexPath.row]
+        if (indexPath.section == 0) {
+            cell.detailTextLabel?.text = timeTable.name
+        } else {
+            switch indexPath.row {
+            case 0:
+                cell.detailTextLabel?.text = days[timeTable.days - 5]
+            default:
+                cell.detailTextLabel?.text = String(timeTable.hours)
+            }
+        }
         return cell
     }
     
