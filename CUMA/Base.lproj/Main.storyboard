@@ -363,7 +363,18 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="3qa-tF-BLn"/>
                     </view>
-                    <navigationItem key="navigationItem" title="時間割の設定" id="9qT-QZ-3QP"/>
+                    <navigationItem key="navigationItem" title="時間割の設定" id="9qT-QZ-3QP">
+                        <barButtonItem key="leftBarButtonItem" title="キャンセル" id="3N7-Op-1mb">
+                            <connections>
+                                <action selector="clickCancelButton:" destination="wok-V4-hIs" id="lNC-os-6xA"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="保存" id="G2g-gg-rCF">
+                            <connections>
+                                <action selector="clickSaveButton:" destination="wok-V4-hIs" id="e61-vm-pmr"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="WTh-DL-QYo" id="t9a-JS-dae"/>
                         <segue destination="jzR-cB-6FU" kind="show" identifier="SellectingDaySegue" id="3kE-7D-Sll"/>
