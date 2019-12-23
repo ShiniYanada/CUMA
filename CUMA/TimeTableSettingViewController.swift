@@ -20,6 +20,13 @@ class TimeTableSettingViewController: UIViewController {
     var timeTable: TimeTable!
     
     @IBOutlet weak var tableView: UITableView!
+
+    @IBAction func clickCancelButton(_ sender: UIBarButtonItem) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func clickSaveButton(_ sender: UIBarButtonItem) {
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,7 +78,6 @@ extension TimeTableSettingViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TimeTableSettingInputCell", for: indexPath)
-        print(indexPath.row)
         cell.textLabel?.text = self.settingTitles[indexPath.section][indexPath.row]
         if (indexPath.section == 0) {
             cell.detailTextLabel?.text = timeTableName ?? timeTable.name
