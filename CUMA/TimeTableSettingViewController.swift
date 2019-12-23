@@ -23,12 +23,8 @@ class TimeTableSettingViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         // Do any additional setup after loading the view.
-        do {
-            let realm = try Realm()
-            timeTable = realm.objects(TimeTable.self).filter("selected == true").first
-        } catch {
-            print("realm error")
-        }
+        let realm = try! Realm()
+        timeTable = realm.objects(TimeTable.self).filter("selected == true").first
     }
     
 
@@ -42,9 +38,13 @@ class TimeTableSettingViewController: UIViewController {
         if (segue.identifier == "SellectingDaySegue") {
             let timeTableSettingDayItemViewController: TimeTableSettingDayItemViewController = segue.destination as! TimeTableSettingDayItemViewController
             timeTableSettingDayItemViewController.navigationItem.title = "曜日の変更"
+            // dayItemsのIndexを送る
+            timeTableSettingDayItemViewController.dayIndex = timeTable.days - 5
         } else if (segue.identifier == "SellectingPeriodSegue") {
             let timeTableSettingPeriodItemViewController: TimeTableSettingHourItemViewController = segue.destination as! TimeTableSettingHourItemViewController
             timeTableSettingPeriodItemViewController.navigationItem.title = "最大時限数"
+            // hourItemsのIndexを送る
+            timeTableSettingPeriodItemViewController.hourIndex = timeTable.hours - 5
         }
     }
 }
