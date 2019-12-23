@@ -12,14 +12,17 @@ import RealmSwift
 class TimeTableSettingViewController: UIViewController {
 
     let settingTitles = [["時間割名"], ["曜日", "時限"]]
-    let days = ["平日のみ", "平日+土", "平日+土日"]
+    let dayItems = ["平日のみ", "平日+土", "平日+土日"]
+    let hourItems = ["5", "6", "7", "8", "9", "10"]
+    var timeTableName: String?
+    var timeTableDayIndex: Int?
+    var timeTableHourIndex: Int?
     var timeTable: TimeTable!
     
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         tableView.delegate = self
         tableView.dataSource = self
         // Do any additional setup after loading the view.
@@ -39,12 +42,12 @@ class TimeTableSettingViewController: UIViewController {
             let timeTableSettingDayItemViewController: TimeTableSettingDayItemViewController = segue.destination as! TimeTableSettingDayItemViewController
             timeTableSettingDayItemViewController.navigationItem.title = "曜日の変更"
             // dayItemsのIndexを送る
-            timeTableSettingDayItemViewController.dayIndex = timeTable.days - 5
+            timeTableSettingDayItemViewController.dayIndex = timeTableDayIndex ?? timeTable.days - 5
         } else if (segue.identifier == "SellectingPeriodSegue") {
             let timeTableSettingPeriodItemViewController: TimeTableSettingHourItemViewController = segue.destination as! TimeTableSettingHourItemViewController
             timeTableSettingPeriodItemViewController.navigationItem.title = "最大時限数"
             // hourItemsのIndexを送る
-            timeTableSettingPeriodItemViewController.hourIndex = timeTable.hours - 5
+            timeTableSettingPeriodItemViewController.hourIndex = timeTableHourIndex ?? timeTable.hours - 5
         }
     }
 }
@@ -68,15 +71,16 @@ extension TimeTableSettingViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TimeTableSettingInputCell", for: indexPath)
+        print(indexPath.row)
         cell.textLabel?.text = self.settingTitles[indexPath.section][indexPath.row]
         if (indexPath.section == 0) {
-            cell.detailTextLabel?.text = timeTable.name
+            cell.detailTextLabel?.text = timeTableName ?? timeTable.name
         } else {
             switch indexPath.row {
             case 0:
-                cell.detailTextLabel?.text = days[timeTable.days - 5]
+                cell.detailTextLabel?.text = dayItems[timeTableDayIndex ?? timeTable.days - 5]
             default:
-                cell.detailTextLabel?.text = String(timeTable.hours)
+                cell.detailTextLabel?.text = hourItems[timeTableHourIndex ?? timeTable.hours - 5]
             }
         }
         return cell
