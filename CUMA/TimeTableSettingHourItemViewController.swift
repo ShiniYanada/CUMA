@@ -10,7 +10,8 @@ import UIKit
 
 class TimeTableSettingHourItemViewController: UIViewController {
 
-    let periodItem = ["5", "6", "7", "8", "9", "10"]
+    let hourItem = ["5", "6", "7", "8", "9", "10"]
+    var hourIndex: Int!
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
@@ -20,17 +21,6 @@ class TimeTableSettingHourItemViewController: UIViewController {
         tableView.dataSource = self
         // Do any additional setup after loading the view.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 
@@ -40,9 +30,12 @@ extension TimeTableSettingHourItemViewController: UITableViewDelegate {
         cell?.accessoryType = .checkmark
     }
     
-    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath)
-        cell?.accessoryType = .none
+    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        if let selectedRow = tableView.indexPathForSelectedRow {
+            let cell = tableView.cellForRow(at: selectedRow)
+            cell?.accessoryType = .none
+        }
+        return indexPath
     }
 }
 
@@ -53,8 +46,14 @@ extension TimeTableSettingHourItemViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PeriodItemCell", for: indexPath)
-        cell.textLabel?.text = periodItem[indexPath.row]
+        cell.textLabel?.text = hourItem[indexPath.row]
         cell.selectionStyle = .none
+        if (indexPath.row == hourIndex) {
+            cell.accessoryType = .checkmark
+            tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
+        } else {
+            cell.accessoryType = .none
+        }
         return cell
     }
 }

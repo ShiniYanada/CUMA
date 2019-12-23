@@ -10,8 +10,8 @@ import UIKit
 
 class TimeTableSettingDayItemViewController: UIViewController {
     
-    let dayItems = ["平日のみ", "平日と土曜日", "１週間"]
-
+    let dayItems = ["平日のみ", "平日+土", "平日+土日"]
+    var dayIndex: Int!
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
@@ -19,19 +19,9 @@ class TimeTableSettingDayItemViewController: UIViewController {
         
         tableView.delegate = self
         tableView.dataSource = self
-
+        
         // Do any additional setup after loading the view.
     }
-    
-
-    // MARK: - Navigation
-    /*
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 }
 
 extension TimeTableSettingDayItemViewController: UITableViewDelegate {
@@ -40,13 +30,14 @@ extension TimeTableSettingDayItemViewController: UITableViewDelegate {
         cell?.accessoryType = .checkmark
     }
     
-    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath)
-        cell?.accessoryType = .none
-    }
-    
-    func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
-        return true
+    // 他のcellを選択する前に現在選択されているcellのaccessoryTypeをnoneにする
+    // tableViewのllowsMultipleSelectionをtrueにしているのならばdeselectRow()を呼ばないと選択状態を解除できない
+    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        if let selectedRow = tableView.indexPathForSelectedRow {
+            let cell = tableView.cellForRow(at: selectedRow)
+            cell?.accessoryType = .none
+        }
+        return indexPath
     }
 }
 
@@ -59,6 +50,13 @@ extension TimeTableSettingDayItemViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DayItemCell", for: indexPath)
         cell.textLabel?.text = dayItems[indexPath.row]
         cell.selectionStyle = .none
+        // 現在のデータに該当するcellをselectRow()で選択状態にする
+        if (indexPath.row == dayIndex) {
+            cell.accessoryType = .checkmark
+            tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
+        } else {
+            cell.accessoryType = .none
+        }
         return cell
     }
     
