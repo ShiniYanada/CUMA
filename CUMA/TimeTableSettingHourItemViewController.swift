@@ -10,7 +10,7 @@ import UIKit
 
 class TimeTableSettingHourItemViewController: UIViewController {
 
-    let hourItem = ["5", "6", "7", "8", "9", "10"]
+    let hourItems = ["5", "6", "7", "8", "9", "10"]
     var hourIndex: Int!
     @IBOutlet weak var tableView: UITableView!
     
@@ -19,6 +19,7 @@ class TimeTableSettingHourItemViewController: UIViewController {
 
         tableView.delegate = self
         tableView.dataSource = self
+        navigationController?.delegate = self
         // Do any additional setup after loading the view.
     }
 
@@ -46,7 +47,7 @@ extension TimeTableSettingHourItemViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PeriodItemCell", for: indexPath)
-        cell.textLabel?.text = hourItem[indexPath.row]
+        cell.textLabel?.text = hourItems[indexPath.row]
         cell.selectionStyle = .none
         if (indexPath.row == hourIndex) {
             cell.accessoryType = .checkmark
@@ -55,5 +56,16 @@ extension TimeTableSettingHourItemViewController: UITableViewDataSource {
             cell.accessoryType = .none
         }
         return cell
+    }
+}
+
+extension TimeTableSettingHourItemViewController: UINavigationControllerDelegate {
+    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+        if (viewController is TimeTableSettingViewController) {
+            let index = tableView.indexPathForSelectedRow?.row
+            let timeTableSettingViewController = viewController as! TimeTableSettingViewController
+            timeTableSettingViewController.timeTableHourIndex = index
+            timeTableSettingViewController.tableView.reloadData()
+        }
     }
 }

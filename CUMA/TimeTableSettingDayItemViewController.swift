@@ -19,6 +19,7 @@ class TimeTableSettingDayItemViewController: UIViewController {
         
         tableView.delegate = self
         tableView.dataSource = self
+        navigationController?.delegate = self
         
         // Do any additional setup after loading the view.
     }
@@ -59,5 +60,15 @@ extension TimeTableSettingDayItemViewController: UITableViewDataSource {
         }
         return cell
     }
-    
+}
+
+extension TimeTableSettingDayItemViewController: UINavigationControllerDelegate {
+    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+        if (viewController is TimeTableSettingViewController) {
+            let index = tableView.indexPathForSelectedRow?.row
+            let timeTableSettingViewController = viewController as! TimeTableSettingViewController
+            timeTableSettingViewController.timeTableDayIndex = index
+            timeTableSettingViewController.tableView.reloadData()
+        }
+    }
 }
