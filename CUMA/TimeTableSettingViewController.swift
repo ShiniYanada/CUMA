@@ -26,6 +26,24 @@ class TimeTableSettingViewController: UIViewController {
     }
     
     @IBAction func clickSaveButton(_ sender: UIBarButtonItem) {
+        let realm = try! Realm()
+        let isNameChanged = timeTableName != nil ? true : false
+        let isDayChanged = timeTableDayIndex != nil ? true : false
+        let isHourChanged = timeTableHourIndex != nil ? true : false
+        
+        try! realm.write {
+            if isNameChanged {
+                timeTable.name = timeTableName!
+            }
+            if isDayChanged {
+                timeTable.days = timeTableDayIndex! + 5
+            }
+            if isHourChanged {
+                timeTable.hours = timeTableHourIndex! + 5
+            }
+        }
+        
+        self.dismiss(animated: true, completion: nil)
     }
     
     override func viewDidLoad() {
