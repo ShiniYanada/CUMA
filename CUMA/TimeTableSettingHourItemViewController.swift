@@ -10,7 +10,7 @@ import UIKit
 
 class TimeTableSettingHourItemViewController: UIViewController {
 
-    let hourItems = ["5", "6", "7", "8", "9", "10"]
+    let hourItems = ["4", "5", "6", "7"]
     var hourIndex: Int!
     @IBOutlet weak var tableView: UITableView!
     
@@ -42,7 +42,7 @@ extension TimeTableSettingHourItemViewController: UITableViewDelegate {
 
 extension TimeTableSettingHourItemViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 6
+        return 4
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
