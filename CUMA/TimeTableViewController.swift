@@ -14,12 +14,12 @@ class TimeTableViewController: UIViewController {
     @IBOutlet weak var timeTableCollectionView: UICollectionView!
     @IBOutlet weak var dayStackView: UIStackView!
     
-    let fullNameDays = ["月曜日", "火曜日", "水曜日", "木曜日", "金曜日", "土曜日"]
-    let hoursName = ["１限", "２限", "３限", "４限", "５限", "６限", "7限"]
+    let fullNameDays = ["月曜日", "火曜日", "水曜日", "木曜日", "金曜日", "土曜日", "日曜日"]
+    let hoursName = ["1限", "2限", "3限", "4限", "5限", "6限", "7限"]
     //表示する曜日の数
-    let numberOfDays = 5
+    var numberOfDays = 5
     //表示する曜日の時限数
-    let numberOfHours = 6
+    var numberOfHours = 6
     //時限の開始時間と終了時間の配列
     let startTimes = ["08:50", "10:30", "12:50", "14:30", "16:10", "17:50", "19:30"]
     let finishTimes = ["10:20", "12:00", "14:20", "16:00", "17:40", "19:20", "21:00"]
@@ -35,6 +35,13 @@ class TimeTableViewController: UIViewController {
         
         timeTableCollectionView.register(UINib(nibName: "TimeTableCell", bundle: nil), forCellWithReuseIdentifier: "TimeTableCell")
         timeTableCollectionView.register(UINib(nibName: "HourCell", bundle: nil), forCellWithReuseIdentifier: "HourCell")
+        
+        let realm = try! Realm()
+        let timeTable = realm.objects(TimeTable.self).filter("selected == true").first
+        print(timeTable!.days)
+        print(timeTable!.hours)
+        self.numberOfDays = timeTable!.days
+        self.numberOfHours = timeTable!.hours
         
         dayStackView.arrangedSubviews[5].isHidden = true
     }
@@ -73,7 +80,10 @@ class TimeTableViewController: UIViewController {
         let layout = UICollectionViewCompositionalLayout(section: section)
 
         return layout
-        
+    }
+    
+    func updateTimeTable() {
+        timeTableCollectionView.collectionViewLayout = createCompositionalLayout()
     }
 }
 
