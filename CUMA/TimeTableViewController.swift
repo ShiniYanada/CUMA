@@ -56,15 +56,6 @@ class TimeTableViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         timeTableCollectionView.collectionViewLayout = createCompositionalLayout()
-        switch numberOfDays {
-        case 5:
-            self.dayStackView.arrangedSubviews[5].isHidden = true
-            self.dayStackView.arrangedSubviews[6].isHidden = true
-        case 6:
-            self.dayStackView.arrangedSubviews[6].isHidden = true
-        default:
-            break
-        }
         super.viewDidLayoutSubviews()
     }
     
@@ -102,6 +93,22 @@ class TimeTableViewController: UIViewController {
     // 時間割の設定に変更があった場合に時間割の時限、曜日をデータを元に再描画する
     func updateTimeTable() {
         timeTableCollectionView.collectionViewLayout = createCompositionalLayout()
+        switch numberOfDays {
+        case 5:
+            print("平日")
+            self.dayStackView.arrangedSubviews[5].isHidden = true
+            self.dayStackView.arrangedSubviews[6].isHidden = true
+        case 6:
+            print("土曜日")
+            self.dayStackView.arrangedSubviews[5].isHidden = false
+            self.dayStackView.arrangedSubviews[6].isHidden = true
+        case 7:
+            print("平日")
+            self.dayStackView.arrangedSubviews[5].isHidden = false
+            self.dayStackView.arrangedSubviews[6].isHidden = false
+        default:
+            break
+        }
         self.timeTableCollectionView.reloadData()
     }
 }
