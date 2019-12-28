@@ -5,35 +5,27 @@
 //  Created by 簗田信緯 on 2019/10/24.
 //  Copyright © 2019 Shini Yanada. All rights reserved.
 //
+//時間割を表示しているView
 
 import UIKit
-import WebKit
+import RealmSwift
 
 class TimeTableViewController: UIViewController {
-
     @IBOutlet weak var timeTableCollectionView: UICollectionView!
-    var webView: WKWebView!
-    let urlString = "https://cup.chiba-u.jp/campusweb/campusportal.do"
+    @IBOutlet weak var dayStackView: UIStackView!
     
-    //曜日の配列
-    let days = ["", "月", "火", "水", "木", "金", "土", "日"]
-    let fullNameDays = ["月曜日", "火曜日", "水曜日", "木曜日", "金曜日", "土曜日"]
-    let hoursName = ["１限", "２限", "３限", "４限", "５限", "６限", "7限"]
+    let fullNameDays = ["月曜日", "火曜日", "水曜日", "木曜日", "金曜日", "土曜日", "日曜日"]
+    let hoursName = ["1限", "2限", "3限", "4限", "5限", "6限", "7限"]
     //表示する曜日の数
-    let numberOfDays = 5
+    var numberOfDays = 5
     //表示する曜日の時限数
-    let numberOfHours = 6
+    var numberOfHours = 6
     //時限の開始時間と終了時間の配列
-    let startTimes = ["08:50", "10:30", "12:50", "14:30", "16:10", "17:50"]
-    let finishTimes = ["10:20", "12:00", "14:20", "16:00", "17:40", "19:20"]
+    let startTimes = ["08:50", "10:30", "12:50", "14:30", "16:10", "17:50", "19:30"]
+    let finishTimes = ["10:20", "12:00", "14:20", "16:00", "17:40", "19:20", "21:00"]
     
-    //左上の何も表示しないセルの幅と高さ
-    let blankSpaceWidth: CGFloat = 60.0
-    let blankSpaceHeight: CGFloat = 60.0
-    //時間割を表示するセルの高さ
-    let timeTableCellHeight: CGFloat = 130.0
-    //セル間の余白
-    let cellMargin: CGFloat = 1.0
+    let hourWidth: CGFloat = 60
+    let timeTableHeight: CGFloat = 140
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,9 +33,39 @@ class TimeTableViewController: UIViewController {
         timeTableCollectionView.delegate = self
         timeTableCollectionView.dataSource = self
         
-        timeTableCollectionView.register(UINib(nibName: "DayCell", bundle: nil), forCellWithReuseIdentifier: "DayCell")
         timeTableCollectionView.register(UINib(nibName: "TimeTableCell", bundle: nil), forCellWithReuseIdentifier: "TimeTableCell")
         timeTableCollectionView.register(UINib(nibName: "HourCell", bundle: nil), forCellWithReuseIdentifier: "HourCell")
+        
+        let realm = try! Realm()
+        let timeTable = realm.objects(TimeTable.self).filter("selected == true").first
+        print(timeTable!.days)
+        print(timeTable!.hours)
+        self.numberOfDays = timeTable!.days
+        self.numberOfHours = timeTable!.hours
+
+        switch numberOfDays {
+        case 5:
+            self.dayStackView.arrangedSubviews[5].isHidden = true
+            self.dayStackView.arrangedSubviews[6].isHidden = true
+        case 6:
+            self.dayStackView.arrangedSubviews[6].isHidden = true
+        default:
+            break
+        }
+    }
+    
+    override func viewDidLayoutSubviews() {
+        timeTableCollectionView.collectionViewLayout = createCompositionalLayout()
+        switch numberOfDays {
+        case 5:
+            self.dayStackView.arrangedSubviews[5].isHidden = true
+            self.dayStackView.arrangedSubviews[6].isHidden = true
+        case 6:
+            self.dayStackView.arrangedSubviews[6].isHidden = true
+        default:
+            break
+        }
+        super.viewDidLayoutSubviews()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -55,41 +77,61 @@ class TimeTableViewController: UIViewController {
             timeTableInputViewController.navigationItem.title = "\(fullNameDays[dayIndex]) \(hoursName[hourIndex])"
         }
     }
+    
+    func createCompositionalLayout() -> UICollectionViewLayout {
+        let houtItem = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .absolute(hourWidth), heightDimension: .fractionalHeight(1.0)))
+        houtItem.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 1)
+        
+        let dayItem = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.2), heightDimension: .fractionalHeight(1.0)))
+        
+        let dayGroup = NSCollectionLayoutGroup.horizontal(layoutSize: NSCollectionLayoutSize(widthDimension: .absolute(timeTableCollectionView.frame.width - hourWidth), heightDimension: .fractionalHeight(1.0)), subitem: dayItem, count: numberOfDays)
+        
+        dayGroup.interItemSpacing = .fixed(2)
+        
+        let nestedGroup = NSCollectionLayoutGroup.horizontal(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(timeTableHeight)), subitems: [houtItem, dayGroup])
+        
+        let section = NSCollectionLayoutSection(group: nestedGroup)
+        
+        section.interGroupSpacing = 2
+        
+        let layout = UICollectionViewCompositionalLayout(section: section)
+
+        return layout
+    }
+    
+    // 時間割の設定に変更があった場合に時間割の時限、曜日をデータを元に再描画する
+    func updateTimeTable() {
+        timeTableCollectionView.collectionViewLayout = createCompositionalLayout()
+        self.timeTableCollectionView.reloadData()
+    }
 }
 
 extension TimeTableViewController: UICollectionViewDataSource {
+    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 2
+        return 1
     }
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if (section == 0) {
-            return numberOfDays + 1
-        } else {
-            return (numberOfDays + 1) * numberOfHours
-        }
+        return (numberOfDays + 1) * numberOfHours
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if (indexPath.section == 0) {
-            let dayCell = collectionView.dequeueReusableCell(withReuseIdentifier: "DayCell", for: indexPath) as! DayCell
-            dayCell.backgroundColor = .red
-            dayCell.dayLabel.text = days[indexPath.row]
-            return dayCell
+ 
+        if (indexPath.row % (numberOfDays + 1) == 0) {
+            let hourCell = collectionView.dequeueReusableCell(withReuseIdentifier: "HourCell", for: indexPath) as! HourCell
+            let hour = indexPath.row / (numberOfDays + 1) + 1
+            hourCell.hourLabel.text = String(hour)
+            hourCell.startTimeLabel.text = startTimes[hour - 1]
+            hourCell.finishTimeLabel.text = finishTimes[hour - 1]
+            hourCell.backgroundColor = .blue
+            return hourCell
         } else {
-            if (indexPath.row % (numberOfDays + 1) == 0) {
-                let hourCell = collectionView.dequeueReusableCell(withReuseIdentifier: "HourCell", for: indexPath) as! HourCell
-                let hour = indexPath.row / (numberOfDays + 1) + 1
-                hourCell.hourLabel.text = String(hour)
-                hourCell.startTimeLabel.text = startTimes[hour - 1]
-                hourCell.finishTimeLabel.text = finishTimes[hour - 1]
-                hourCell.backgroundColor = .blue
-                return hourCell
-            } else {
-                let timeTableCell = collectionView.dequeueReusableCell(withReuseIdentifier: "TimeTableCell", for: indexPath) as! TimeTableCell
-                timeTableCell.backgroundColor = .blue
-                return timeTableCell
-            }
+            let timeTableCell = collectionView.dequeueReusableCell(withReuseIdentifier: "TimeTableCell", for: indexPath) as! TimeTableCell
+            timeTableCell.backgroundColor = .blue
+            return timeTableCell
         }
+        
     }
     
     
@@ -97,9 +139,7 @@ extension TimeTableViewController: UICollectionViewDataSource {
 
 extension TimeTableViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        if indexPath.section == 0 {
-            return false
-        } else if (indexPath.row % (numberOfDays + 1) == 0){
+        if (indexPath.row % (numberOfDays + 1) == 0) {
             return false
         } else {
             return true
@@ -110,35 +150,4 @@ extension TimeTableViewController: UICollectionViewDelegate {
         performSegue(withIdentifier: "TimeTableSearchSegue", sender: indexPath)
         print("Selected: \(indexPath.row)")
     }
-}
-
-extension TimeTableViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
-        let numberOfRow = CGFloat(numberOfDays)
-        let width = (collectionView.frame.width - blankSpaceWidth - cellMargin * numberOfRow) / numberOfRow
-        
-        if (indexPath.section == 0) {
-            if (indexPath.row == 0) {
-                return CGSize(width: blankSpaceWidth, height: blankSpaceHeight)
-            } else {
-                return CGSize(width: width, height: blankSpaceHeight)
-            }
-        } else {
-            if (indexPath.row % (numberOfDays + 1) == 0) {
-                return CGSize(width: blankSpaceWidth, height: timeTableCellHeight)
-            } else {
-                return CGSize(width: width, height: timeTableCellHeight)
-            }
-        }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        cellMargin
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return cellMargin
-    }
-
 }

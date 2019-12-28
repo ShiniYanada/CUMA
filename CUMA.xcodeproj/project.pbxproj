@@ -3,13 +3,21 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		3607C72C2363E9ED0043C108 /* TimeTableISearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3607C72B2363E9ED0043C108 /* TimeTableISearchViewController.swift */; };
+		361D8C3A23AE4DA800167385 /* initial-compact.realm in Resources */ = {isa = PBXBuildFile; fileRef = 361D8C3923AE4D8F00167385 /* initial-compact.realm */; };
+		364229B7236C02D200625188 /* Lesson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364229B6236C02D200625188 /* Lesson.swift */; };
+		364229B9236C61CA00625188 /* ClassDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364229B8236C61CA00625188 /* ClassDetailViewController.swift */; };
+		364E00BB237919D40027A053 /* TimeTableListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364E00BA237919D40027A053 /* TimeTableListViewController.swift */; };
+		36517420239CEEBC009A54EB /* TimeTableSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3651741F239CEEBC009A54EB /* TimeTableSettingViewController.swift */; };
+		3651742E239E11A8009A54EB /* TimeTableSettingDayItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3651742D239E11A8009A54EB /* TimeTableSettingDayItemViewController.swift */; };
+		36517433239E73BA009A54EB /* TimeTableSettingHourItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36517432239E73BA009A54EB /* TimeTableSettingHourItemViewController.swift */; };
 		367A34B1236A774D000458EC /* ClassCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367A34AF236A774D000458EC /* ClassCell.swift */; };
 		367A34B2236A774D000458EC /* ClassCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 367A34B0236A774D000458EC /* ClassCell.xib */; };
+		369D9626237D047E000C2616 /* TimeTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369D9625237D047E000C2616 /* TimeTable.swift */; };
 		36C2B367236136AC00D5D5CB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C2B366236136AC00D5D5CB /* AppDelegate.swift */; };
 		36C2B369236136AC00D5D5CB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C2B368236136AC00D5D5CB /* SceneDelegate.swift */; };
 		36C2B36B236136AC00D5D5CB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C2B36A236136AC00D5D5CB /* ViewController.swift */; };
@@ -17,19 +25,25 @@
 		36C2B370236136B000D5D5CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 36C2B36F236136B000D5D5CB /* Assets.xcassets */; };
 		36C2B373236136B000D5D5CB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36C2B371236136B000D5D5CB /* LaunchScreen.storyboard */; };
 		36C2B37B23613A8E00D5D5CB /* TimeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C2B37A23613A8E00D5D5CB /* TimeTableViewController.swift */; };
-		36C2B37E23613D3700D5D5CB /* DayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C2B37C23613D3700D5D5CB /* DayCell.swift */; };
-		36C2B37F23613D3700D5D5CB /* DayCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36C2B37D23613D3700D5D5CB /* DayCell.xib */; };
 		36C2B3822361A3AD00D5D5CB /* TimeTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C2B3802361A3AD00D5D5CB /* TimeTableCell.swift */; };
 		36C2B3832361A3AD00D5D5CB /* TimeTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36C2B3812361A3AD00D5D5CB /* TimeTableCell.xib */; };
 		36C2B3862361D2B700D5D5CB /* HourCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C2B3842361D2B700D5D5CB /* HourCell.swift */; };
 		36C2B3872361D2B700D5D5CB /* HourCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36C2B3852361D2B700D5D5CB /* HourCell.xib */; };
-		36C2B3892362DF9B00D5D5CB /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C2B3882362DF9B00D5D5CB /* DetailViewController.swift */; };
+		986F92B9C92AD502950D54CD /* Pods_CUMA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68F060689FAFBF8B59DC53D3 /* Pods_CUMA.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		3607C72B2363E9ED0043C108 /* TimeTableISearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableISearchViewController.swift; sourceTree = "<group>"; };
+		361D8C3923AE4D8F00167385 /* initial-compact.realm */ = {isa = PBXFileReference; lastKnownFileType = file; path = "initial-compact.realm"; sourceTree = "<group>"; };
+		364229B6236C02D200625188 /* Lesson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lesson.swift; sourceTree = "<group>"; };
+		364229B8236C61CA00625188 /* ClassDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassDetailViewController.swift; sourceTree = "<group>"; };
+		364E00BA237919D40027A053 /* TimeTableListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableListViewController.swift; sourceTree = "<group>"; };
+		3651741F239CEEBC009A54EB /* TimeTableSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableSettingViewController.swift; sourceTree = "<group>"; };
+		3651742D239E11A8009A54EB /* TimeTableSettingDayItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableSettingDayItemViewController.swift; sourceTree = "<group>"; };
+		36517432239E73BA009A54EB /* TimeTableSettingHourItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableSettingHourItemViewController.swift; sourceTree = "<group>"; };
 		367A34AF236A774D000458EC /* ClassCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassCell.swift; sourceTree = "<group>"; };
 		367A34B0236A774D000458EC /* ClassCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ClassCell.xib; sourceTree = "<group>"; };
+		369D9625237D047E000C2616 /* TimeTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTable.swift; sourceTree = "<group>"; };
 		36C2B363236136AC00D5D5CB /* CUMA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CUMA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		36C2B366236136AC00D5D5CB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		36C2B368236136AC00D5D5CB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -39,13 +53,13 @@
 		36C2B372236136B000D5D5CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		36C2B374236136B000D5D5CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		36C2B37A23613A8E00D5D5CB /* TimeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableViewController.swift; sourceTree = "<group>"; };
-		36C2B37C23613D3700D5D5CB /* DayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayCell.swift; sourceTree = "<group>"; };
-		36C2B37D23613D3700D5D5CB /* DayCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DayCell.xib; sourceTree = "<group>"; };
 		36C2B3802361A3AD00D5D5CB /* TimeTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableCell.swift; sourceTree = "<group>"; };
 		36C2B3812361A3AD00D5D5CB /* TimeTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TimeTableCell.xib; sourceTree = "<group>"; };
 		36C2B3842361D2B700D5D5CB /* HourCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourCell.swift; sourceTree = "<group>"; };
 		36C2B3852361D2B700D5D5CB /* HourCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HourCell.xib; sourceTree = "<group>"; };
-		36C2B3882362DF9B00D5D5CB /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		68F060689FAFBF8B59DC53D3 /* Pods_CUMA.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CUMA.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7E1F6EE1FA03D8EF09C06B64 /* Pods-CUMA.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CUMA.release.xcconfig"; path = "Pods/Target Support Files/Pods-CUMA/Pods-CUMA.release.xcconfig"; sourceTree = "<group>"; };
+		EAF0C9EAD09130E08F75F7E8 /* Pods-CUMA.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CUMA.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CUMA/Pods-CUMA.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				986F92B9C92AD502950D54CD /* Pods_CUMA.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -64,6 +79,8 @@
 			children = (
 				36C2B365236136AC00D5D5CB /* CUMA */,
 				36C2B364236136AC00D5D5CB /* Products */,
+				8B706CEBBD0E6089771D1AF3 /* Pods */,
+				C05EBC0E6E39CCA71FDC13FB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -82,12 +99,17 @@
 				36C2B368236136AC00D5D5CB /* SceneDelegate.swift */,
 				36C2B36A236136AC00D5D5CB /* ViewController.swift */,
 				36C2B36C236136AC00D5D5CB /* Main.storyboard */,
+				364229B8236C61CA00625188 /* ClassDetailViewController.swift */,
+				364E00BA237919D40027A053 /* TimeTableListViewController.swift */,
+				369D9625237D047E000C2616 /* TimeTable.swift */,
 				367A34AF236A774D000458EC /* ClassCell.swift */,
 				367A34B0236A774D000458EC /* ClassCell.xib */,
-				36C2B3882362DF9B00D5D5CB /* DetailViewController.swift */,
-				36C2B37C23613D3700D5D5CB /* DayCell.swift */,
-				36C2B37D23613D3700D5D5CB /* DayCell.xib */,
+				3651742D239E11A8009A54EB /* TimeTableSettingDayItemViewController.swift */,
+				36517432239E73BA009A54EB /* TimeTableSettingHourItemViewController.swift */,
 				36C2B37A23613A8E00D5D5CB /* TimeTableViewController.swift */,
+				361D8C3923AE4D8F00167385 /* initial-compact.realm */,
+				3651741F239CEEBC009A54EB /* TimeTableSettingViewController.swift */,
+				364229B6236C02D200625188 /* Lesson.swift */,
 				3607C72B2363E9ED0043C108 /* TimeTableISearchViewController.swift */,
 				36C2B3842361D2B700D5D5CB /* HourCell.swift */,
 				36C2B3852361D2B700D5D5CB /* HourCell.xib */,
@@ -100,6 +122,23 @@
 			path = CUMA;
 			sourceTree = "<group>";
 		};
+		8B706CEBBD0E6089771D1AF3 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				EAF0C9EAD09130E08F75F7E8 /* Pods-CUMA.debug.xcconfig */,
+				7E1F6EE1FA03D8EF09C06B64 /* Pods-CUMA.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		C05EBC0E6E39CCA71FDC13FB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				68F060689FAFBF8B59DC53D3 /* Pods_CUMA.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -107,9 +146,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 36C2B377236136B000D5D5CB /* Build configuration list for PBXNativeTarget "CUMA" */;
 			buildPhases = (
+				FEF12ADA361134209BDE5BB0 /* [CP] Check Pods Manifest.lock */,
 				36C2B35F236136AC00D5D5CB /* Sources */,
 				36C2B360236136AC00D5D5CB /* Frameworks */,
 				36C2B361236136AC00D5D5CB /* Resources */,
+				FC53429E863B221ABCFEB183 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -158,11 +199,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				361D8C3A23AE4DA800167385 /* initial-compact.realm in Resources */,
 				36C2B373236136B000D5D5CB /* LaunchScreen.storyboard in Resources */,
 				36C2B3872361D2B700D5D5CB /* HourCell.xib in Resources */,
 				36C2B3832361A3AD00D5D5CB /* TimeTableCell.xib in Resources */,
 				36C2B370236136B000D5D5CB /* Assets.xcassets in Resources */,
-				36C2B37F23613D3700D5D5CB /* DayCell.xib in Resources */,
 				36C2B36E236136AC00D5D5CB /* Main.storyboard in Resources */,
 				367A34B2236A774D000458EC /* ClassCell.xib in Resources */,
 			);
@@ -170,21 +211,64 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		FC53429E863B221ABCFEB183 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CUMA/Pods-CUMA-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CUMA/Pods-CUMA-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CUMA/Pods-CUMA-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FEF12ADA361134209BDE5BB0 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CUMA-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		36C2B35F236136AC00D5D5CB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				3607C72C2363E9ED0043C108 /* TimeTableISearchViewController.swift in Sources */,
+				3651742E239E11A8009A54EB /* TimeTableSettingDayItemViewController.swift in Sources */,
+				36517420239CEEBC009A54EB /* TimeTableSettingViewController.swift in Sources */,
+				364E00BB237919D40027A053 /* TimeTableListViewController.swift in Sources */,
 				36C2B36B236136AC00D5D5CB /* ViewController.swift in Sources */,
 				36C2B3862361D2B700D5D5CB /* HourCell.swift in Sources */,
 				36C2B367236136AC00D5D5CB /* AppDelegate.swift in Sources */,
+				36517433239E73BA009A54EB /* TimeTableSettingHourItemViewController.swift in Sources */,
 				367A34B1236A774D000458EC /* ClassCell.swift in Sources */,
-				36C2B37E23613D3700D5D5CB /* DayCell.swift in Sources */,
 				36C2B37B23613A8E00D5D5CB /* TimeTableViewController.swift in Sources */,
 				36C2B369236136AC00D5D5CB /* SceneDelegate.swift in Sources */,
+				369D9626237D047E000C2616 /* TimeTable.swift in Sources */,
 				36C2B3822361A3AD00D5D5CB /* TimeTableCell.swift in Sources */,
-				36C2B3892362DF9B00D5D5CB /* DetailViewController.swift in Sources */,
+				364229B9236C61CA00625188 /* ClassDetailViewController.swift in Sources */,
+				364229B7236C02D200625188 /* Lesson.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -326,6 +410,7 @@
 		};
 		36C2B378236136B000D5D5CB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EAF0C9EAD09130E08F75F7E8 /* Pods-CUMA.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -344,6 +429,7 @@
 		};
 		36C2B379236136B000D5D5CB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7E1F6EE1FA03D8EF09C06B64 /* Pods-CUMA.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
