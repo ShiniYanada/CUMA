@@ -13,7 +13,7 @@ class TimeTableSettingViewController: UIViewController {
 
     let settingTitles = [["時間割名"], ["曜日", "時限"]]
     let dayItems = ["平日のみ", "平日+土", "平日+土日"]
-    let hourItems = ["5", "6", "7", "8", "9", "10"]
+    let hourItems = ["4", "5", "6", "7"]
     var timeTableName: String?
     var timeTableDayIndex: Int?
     var timeTableHourIndex: Int?
@@ -30,22 +30,29 @@ class TimeTableSettingViewController: UIViewController {
         let isNameChanged = timeTableName != nil ? true : false
         let isDayChanged = timeTableDayIndex != nil ? true : false
         let isHourChanged = timeTableHourIndex != nil ? true : false
+        let isChanged = isNameChanged || isHourChanged || isDayChanged
+        // presentingViewController で前の画面のControllerを取得できる。
+        let tabVC = presentingViewController as! UITabBarController
+        let navVC = tabVC.selectedViewController as! UINavigationController
+        let timeTableViewController = navVC.topViewController as! TimeTableViewController
         
-        try! realm.write {
-            if isNameChanged {
-                timeTable.name = timeTableName!
-            }
-            if isDayChanged {
-                timeTable.days = timeTableDayIndex! + 5
-            }
-            if isHourChanged {
-                timeTable.hours = timeTableHourIndex! + 5
+        if isChanged {
+            try! realm.write {
+                self.timeTable.name = isNameChanged ? self.timeTableName! : self.timeTable.name
+                self.timeTable.days = isDayChanged ? self.timeTableDayIndex! + 5 : self.timeTable.days
+                self.timeTable.hours = isHourChanged ? self.timeTableHourIndex! + 4 : self.timeTable.hours
             }
         }
         
+        //保存後時間割の画面を保存した内容に変更する
+        timeTableViewController.navigationItem.title = isNameChanged ? self.timeTableName! : self.timeTable.name
+        timeTableViewController.numberOfDays = isDayChanged ? self.timeTableDayIndex! + 5 : self.timeTable.days
+        timeTableViewController.numberOfHours = isHourChanged ? self.timeTableHourIndex! + 4 : self.timeTable.hours
+        timeTableViewController.updateTimeTable()
+        
         self.dismiss(animated: true, completion: nil)
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
@@ -72,7 +79,7 @@ class TimeTableSettingViewController: UIViewController {
             let timeTableSettingPeriodItemViewController: TimeTableSettingHourItemViewController = segue.destination as! TimeTableSettingHourItemViewController
             timeTableSettingPeriodItemViewController.navigationItem.title = "最大時限数"
             // hourItemsのIndexを送る
-            timeTableSettingPeriodItemViewController.hourIndex = timeTableHourIndex ?? timeTable.hours - 5
+            timeTableSettingPeriodItemViewController.hourIndex = timeTableHourIndex ?? timeTable.hours - 4
         }
     }
 }
@@ -104,7 +111,7 @@ extension TimeTableSettingViewController: UITableViewDataSource {
             case 0:
                 cell.detailTextLabel?.text = dayItems[timeTableDayIndex ?? timeTable.days - 5]
             default:
-                cell.detailTextLabel?.text = hourItems[timeTableHourIndex ?? timeTable.hours - 5]
+                cell.detailTextLabel?.text = hourItems[timeTableHourIndex ?? timeTable.hours - 4]
             }
         }
         return cell
