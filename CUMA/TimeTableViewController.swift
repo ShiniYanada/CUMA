@@ -42,12 +42,29 @@ class TimeTableViewController: UIViewController {
         print(timeTable!.hours)
         self.numberOfDays = timeTable!.days
         self.numberOfHours = timeTable!.hours
-        
-        dayStackView.arrangedSubviews[5].isHidden = true
+
+        switch numberOfDays {
+        case 5:
+            self.dayStackView.arrangedSubviews[5].isHidden = true
+            self.dayStackView.arrangedSubviews[6].isHidden = true
+        case 6:
+            self.dayStackView.arrangedSubviews[6].isHidden = true
+        default:
+            break
+        }
     }
     
     override func viewDidLayoutSubviews() {
         timeTableCollectionView.collectionViewLayout = createCompositionalLayout()
+        switch numberOfDays {
+        case 5:
+            self.dayStackView.arrangedSubviews[5].isHidden = true
+            self.dayStackView.arrangedSubviews[6].isHidden = true
+        case 6:
+            self.dayStackView.arrangedSubviews[6].isHidden = true
+        default:
+            break
+        }
         super.viewDidLayoutSubviews()
     }
     
@@ -82,8 +99,10 @@ class TimeTableViewController: UIViewController {
         return layout
     }
     
+    // 時間割の設定に変更があった場合に時間割の時限、曜日をデータを元に再描画する
     func updateTimeTable() {
         timeTableCollectionView.collectionViewLayout = createCompositionalLayout()
+        self.timeTableCollectionView.reloadData()
     }
 }
 
