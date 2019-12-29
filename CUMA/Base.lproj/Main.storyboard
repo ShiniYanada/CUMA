@@ -196,10 +196,44 @@
                     <view key="view" contentMode="scaleToFill" id="cfs-Kc-6Hp">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="MKV-8m-JM0">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="WJZ-3H-fsI" style="IBUITableViewCellStyleDefault" id="K4w-fk-Jaj">
+                                        <rect key="frame" x="0.0" y="55.333332061767578" width="414" height="43.666667938232422"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="K4w-fk-Jaj" id="gkL-o0-aZc">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="WJZ-3H-fsI">
+                                                    <rect key="frame" x="20" y="0.0" width="374" height="43.666667938232422"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemGroupedBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="20U-ZI-idh" firstAttribute="bottom" secondItem="MKV-8m-JM0" secondAttribute="bottom" id="ABY-Rh-oNd"/>
+                            <constraint firstItem="MKV-8m-JM0" firstAttribute="leading" secondItem="20U-ZI-idh" secondAttribute="leading" id="XGP-wr-oWY"/>
+                            <constraint firstItem="MKV-8m-JM0" firstAttribute="top" secondItem="20U-ZI-idh" secondAttribute="top" id="qWY-AL-2IP"/>
+                            <constraint firstItem="20U-ZI-idh" firstAttribute="trailing" secondItem="MKV-8m-JM0" secondAttribute="trailing" id="vWd-02-PvC"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="20U-ZI-idh"/>
                     </view>
                     <navigationItem key="navigationItem" title="時間割の変更" id="9zU-Om-kKz"/>
+                    <connections>
+                        <outlet property="tableView" destination="MKV-8m-JM0" id="N9C-Tb-Ki9"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tai-uV-bQh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
