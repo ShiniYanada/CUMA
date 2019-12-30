@@ -20,10 +20,6 @@ class TimeTableSettingViewController: UIViewController {
     var timeTable: TimeTable!
     
     @IBOutlet weak var tableView: UITableView!
-
-    @IBAction func clickCancelButton(_ sender: UIBarButtonItem) {
-        self.dismiss(animated: true, completion: nil)
-    }
     
     @IBAction func clickSaveButton(_ sender: UIBarButtonItem) {
         let realm = try! Realm()
@@ -31,10 +27,7 @@ class TimeTableSettingViewController: UIViewController {
         let isDayChanged = timeTableDayIndex != nil ? true : false
         let isHourChanged = timeTableHourIndex != nil ? true : false
         let isChanged = isNameChanged || isHourChanged || isDayChanged
-        // presentingViewController で前の画面のControllerを取得できる。
-        let tabVC = presentingViewController as! UITabBarController
-        let navVC = tabVC.selectedViewController as! UINavigationController
-        let timeTableViewController = navVC.topViewController as! TimeTableViewController
+        let timeTableViewController = navigationController?.viewControllers[0] as! TimeTableViewController
         
         if isChanged {
             try! realm.write {
@@ -49,8 +42,7 @@ class TimeTableSettingViewController: UIViewController {
         timeTableViewController.numberOfDays = isDayChanged ? self.timeTableDayIndex! + 5 : self.timeTable.days
         timeTableViewController.numberOfHours = isHourChanged ? self.timeTableHourIndex! + 4 : self.timeTable.hours
         timeTableViewController.updateTimeTable()
-        
-        self.dismiss(animated: true, completion: nil)
+        navigationController?.popViewController(animated: true)
     }
 
     override func viewDidLoad() {

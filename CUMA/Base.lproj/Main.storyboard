@@ -170,12 +170,12 @@
                     <navigationItem key="navigationItem" title="2019 前期" id="uB6-jr-HeF">
                         <barButtonItem key="leftBarButtonItem" title="時間割変更" id="ARK-ro-DC8">
                             <connections>
-                                <segue destination="v09-Tf-IFL" kind="show" id="qsq-1b-cUa"/>
+                                <segue destination="v09-Tf-IFL" kind="presentation" id="7pu-mY-0RO"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="設定" id="gPT-oH-gK6">
                             <connections>
-                                <segue destination="CTN-zM-rm6" kind="presentation" id="Lrd-LB-eUU"/>
+                                <segue destination="wok-V4-hIs" kind="show" id="a6i-mu-Bdc"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -194,11 +194,11 @@
             <objects>
                 <viewController id="v09-Tf-IFL" customClass="TimeTableListViewController" customModule="CUMA" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cfs-Kc-6Hp">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="MKV-8m-JM0">
-                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="WJZ-3H-fsI" style="IBUITableViewCellStyleDefault" id="K4w-fk-Jaj">
@@ -370,11 +370,11 @@
             <objects>
                 <viewController id="wok-V4-hIs" customClass="TimeTableSettingViewController" customModule="CUMA" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ext-9L-W4r">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="WTh-DL-QYo">
-                                <rect key="frame" x="0.0" y="56" width="414" height="752"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="TimeTableSettingInputCell" textLabel="dGq-li-Lmr" detailTextLabel="Z6q-75-exE" style="IBUITableViewCellStyleValue1" id="g7O-lF-ae8">
@@ -414,11 +414,6 @@
                         <viewLayoutGuide key="safeArea" id="3qa-tF-BLn"/>
                     </view>
                     <navigationItem key="navigationItem" title="時間割の設定" id="9qT-QZ-3QP">
-                        <barButtonItem key="leftBarButtonItem" title="キャンセル" id="3N7-Op-1mb">
-                            <connections>
-                                <action selector="clickCancelButton:" destination="wok-V4-hIs" id="lNC-os-6xA"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="保存" id="G2g-gg-rCF">
                             <connections>
                                 <action selector="clickSaveButton:" destination="wok-V4-hIs" id="e61-vm-pmr"/>
@@ -433,18 +428,18 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pzy-Yd-Lfw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3815.9420289855075" y="-84.375"/>
+            <point key="canvasLocation" x="3284" y="-89"/>
         </scene>
         <!--Time Table Setting Hour Item View Controller-->
         <scene sceneID="MS9-La-SEj">
             <objects>
                 <viewController id="QH8-rS-SLb" customClass="TimeTableSettingHourItemViewController" customModule="CUMA" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8QB-Uj-p5C">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="zdk-pj-Bsg">
-                                <rect key="frame" x="0.0" y="56" width="414" height="752"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PeriodItemCell" textLabel="B9I-ts-JKm" style="IBUITableViewCellStyleDefault" id="9i5-gr-pR3">
@@ -490,11 +485,11 @@
             <objects>
                 <viewController id="jzR-cB-6FU" customClass="TimeTableSettingDayItemViewController" customModule="CUMA" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="LhN-Qp-3aq">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="ZRt-ro-4Vu">
-                                <rect key="frame" x="0.0" y="56" width="414" height="752"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DayItemCell" textLabel="SJT-OQ-9nr" style="IBUITableViewCellStyleDefault" id="YY0-Jf-f31">
@@ -534,24 +529,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HcW-VK-sCq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4712" y="-678"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="udC-vE-feN">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="CTN-zM-rm6" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="8Uy-ha-nGV">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="wok-V4-hIs" kind="relationship" relationship="rootViewController" id="T8x-Om-LEg"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Nhf-Vy-9Za" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2905.7971014492755" y="-84.375"/>
         </scene>
     </scenes>
 </document>
