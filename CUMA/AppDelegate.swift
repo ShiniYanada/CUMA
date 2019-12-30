@@ -5,6 +5,22 @@
 //  Created by 簗田信緯 on 2019/10/24.
 //  Copyright © 2019 Shini Yanada. All rights reserved.
 //
+// Xcode Version 11.2.1 (11B500)
+//PODS:
+//  - InstantSearchClient (7.0.3)
+//  - Realm (4.3.0):
+//    - Realm/Headers (= 4.3.0)
+//  - Realm/Headers (4.3.0)
+//  - RealmSwift (4.3.0):
+//    - Realm (= 4.3.0)
+//  - SwiftyJSON (4.3.0)
+//
+//DEPENDENCIES:
+//  - InstantSearchClient (~> 7.0)
+//  - RealmSwift
+//  - SwiftyJSON (~> 4.0)
+//
+//COCOAPODS: 1.8.4
 
 import UIKit
 import RealmSwift
