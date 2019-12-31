@@ -22,12 +22,10 @@ class TimeTableListViewController: UIViewController {
         // Do any additional setup after loading the view.
         navigationItem.rightBarButtonItem = editButtonItem
     }
-    
     //navigationBarのEditボタンを押した時にtableViewの編集モードをON/OFFにする
     override func setEditing(_ editing: Bool, animated: Bool) {
-        debugLog()
         super.setEditing(editing, animated: animated)
-        tableView.isEditing = editing
+        tableView.setEditing(editing, animated: animated)
     }
     
     func debugLog(_ message: String = "", function: String = #function, file: String = #file, line: Int = #line) {
@@ -40,7 +38,6 @@ class TimeTableListViewController: UIViewController {
 extension TimeTableListViewController: UITableViewDelegate {
     // 編集モードの時のCellの左側にInsertion/Delete/Noneのいずれかを表示
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
-        debugLog()
         if tableView.isEditing {
             return .delete
         }
@@ -48,7 +45,6 @@ extension TimeTableListViewController: UITableViewDelegate {
     }
     // Cellの削除ボタンがを押された時の処理
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        print("delete")
         items.remove(at: indexPath.row)
         tableView.deleteRows(at: [indexPath as IndexPath], with: .automatic)
     }
@@ -56,35 +52,29 @@ extension TimeTableListViewController: UITableViewDelegate {
 
 extension TimeTableListViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        debugLog()
         return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        debugLog()
         return items.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        debugLog()
         cell.textLabel?.text = items[indexPath.row]
         cell.selectionStyle = .none
         return cell
     }
     // 編集モードでCellの並び替えを可能にするかどうか
     func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        debugLog()
         return true
     }
     // falseの場合Insertion/Deleteの記号が表示されない。trueの場合Insertion/Deleteができるようになる
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        debugLog()
         return true
     }
     
     func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
-        debugLog()
         return false
     }
     
