@@ -42,9 +42,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         )
         Realm.Configuration.defaultConfiguration = config
         let realm = try! Realm()
-        
+        let defaultURL = Realm.Configuration.defaultConfiguration.fileURL!
+//        try! FileManager.default.removeItem(at: defaultURL)
+        print(defaultURL)
         let result = realm.objects(TimeTable.self)
         print(result.first?.selected == true)
+        if FileManager.default.fileExists(atPath: defaultURL.path) {
+            print("exist")
+        } else {
+            print("not exist")
+            let bundleRealmPath = Bundle.main.url(forResource: "initial-compact", withExtension: "realm")
+            do {
+                try FileManager.default.copyItem(at: bundleRealmPath!, to: defaultURL)
+            } catch { print("coppy error")}
+        }
         
         return true
     }
