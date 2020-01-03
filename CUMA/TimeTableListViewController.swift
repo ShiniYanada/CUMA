@@ -15,7 +15,7 @@ class TimeTableListViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     var items = ["test1", "test2"]
     var selectedIndexPath: IndexPath?
-    var timeTables: Results<TimeTable>!
+    var timeTables: [TimeTable]!
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -25,7 +25,8 @@ class TimeTableListViewController: UIViewController {
         navigationItem.rightBarButtonItem = editButtonItem
         let realm = try! Realm()
         let timeTables = realm.objects(TimeTable.self).sorted(byKeyPath: "createdAt")
-        self.timeTables = timeTables    }
+        self.timeTables = Array(timeTables)
+    }
     //navigationBarのEditボタンを押した時にtableViewの編集モードをON/OFFにする
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
@@ -48,13 +49,19 @@ extension TimeTableListViewController: UITableViewDelegate {
     // 編集モードの時のCellの左側にInsertion/Delete/Noneのいずれかを表示
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         if tableView.isEditing {
-            return .delete
+            if timeTables.count == 1 {
+                return .none
+            } else {
+                return .delete
+            }
         }
         return .none
     }
     // Cellの削除ボタンがを押された時の処理
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        tableView.deleteRows(at: [indexPath as IndexPath], with: .automatic)
+        if timeTables.count != 1 {
+            tableView.deleteRows(at: [indexPath as IndexPath], with: .automatic)
+        }
     }
     
     // Cellタップ後の処理
@@ -112,11 +119,10 @@ extension TimeTableListViewController: UITableViewDataSource {
     
     //並び替え実行時に処理されるこの関数を実装しないとCellの右側に記号が表示されない
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        debugLog()
-//        let item = items[sourceIndexPath.row]
-//        items.remove(at:sourceIndexPath.row)
-//        items.insert(item, at: destinationIndexPath.row)
-//        tableView.reloadData()
+        let timeTable = timeTables[sourceIndexPath.row]
+        timeTables.remove(at:sourceIndexPath.row)
+        timeTables.insert(timeTable, at: destinationIndexPath.row)
+        tableView.reloadData()
     }
     
     // isEditing = falseの時、セルをスワイプさせて削除しようとすると、
