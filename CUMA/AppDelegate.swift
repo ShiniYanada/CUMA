@@ -33,10 +33,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         let config = Realm.Configuration(
-            schemaVersion: 2,
+            schemaVersion: 3,
             migrationBlock: { migration, oldSchemaVersion in
-                if (oldSchemaVersion < 2) {
-
+                if (oldSchemaVersion < 3) {
+                    migration.enumerateObjects(ofType: TimeTable.className(), { oldObject, newObject in
+                        newObject!["createdAt"] = Date()
+                    })
                 }
             }
         )
@@ -46,7 +48,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        try! FileManager.default.removeItem(at: defaultURL)
         print(defaultURL)
         let result = realm.objects(TimeTable.self)
-        print(result.first?.selected == true)
+        print(result)
         if FileManager.default.fileExists(atPath: defaultURL.path) {
             print("exist")
         } else {
