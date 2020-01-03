@@ -16,6 +16,7 @@ class TimeTableListViewController: UIViewController {
     var items = ["test1", "test2"]
     var selectedIndexPath: IndexPath?
     var timeTables: [TimeTable]!
+    var timeTableResults: Results<TimeTable>!
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -25,7 +26,8 @@ class TimeTableListViewController: UIViewController {
         navigationItem.rightBarButtonItem = editButtonItem
         let realm = try! Realm()
         let timeTables = realm.objects(TimeTable.self).sorted(byKeyPath: "createdAt")
-        self.timeTables = Array(timeTables)
+        self.timeTableResults = timeTables
+        self.timeTables = timeTables.map {$0}
     }
     //navigationBarのEditボタンを押した時にtableViewの編集モードをON/OFFにする
     override func setEditing(_ editing: Bool, animated: Bool) {
@@ -61,6 +63,11 @@ extension TimeTableListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if timeTables.count != 1 {
             tableView.deleteRows(at: [indexPath as IndexPath], with: .automatic)
+            let realm = try! Realm()
+            try! realm.write {
+                realm.delete(timeTableResults[indexPath.row])
+            }
+            self.timeTables = timeTableResults.map {$0}
         }
     }
     
