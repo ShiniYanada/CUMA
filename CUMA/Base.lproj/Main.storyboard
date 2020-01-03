@@ -170,7 +170,7 @@
                     <navigationItem key="navigationItem" title="2019 前期" id="uB6-jr-HeF">
                         <barButtonItem key="leftBarButtonItem" title="時間割変更" id="ARK-ro-DC8">
                             <connections>
-                                <segue destination="v09-Tf-IFL" kind="presentation" id="7pu-mY-0RO"/>
+                                <segue destination="PB9-4s-7T6" kind="presentation" id="7pu-mY-0RO"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="設定" id="gPT-oH-gK6">
@@ -189,7 +189,7 @@
             </objects>
             <point key="canvasLocation" x="1889.8550724637682" y="126.5625"/>
         </scene>
-        <!--時間割の変更-->
+        <!--時間割-->
         <scene sceneID="ztA-sW-cpR">
             <objects>
                 <viewController id="v09-Tf-IFL" customClass="TimeTableListViewController" customModule="CUMA" customModuleProvider="target" sceneMemberID="viewController">
@@ -198,7 +198,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="MKV-8m-JM0">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                                <rect key="frame" x="0.0" y="56" width="414" height="752"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="WJZ-3H-fsI" style="IBUITableViewCellStyleDefault" id="K4w-fk-Jaj">
@@ -230,14 +230,14 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="20U-ZI-idh"/>
                     </view>
-                    <navigationItem key="navigationItem" title="時間割の変更" id="9zU-Om-kKz"/>
+                    <navigationItem key="navigationItem" title="時間割" id="9zU-Om-kKz"/>
                     <connections>
                         <outlet property="tableView" destination="MKV-8m-JM0" id="N9C-Tb-Ki9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tai-uV-bQh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1890" y="-638"/>
+            <point key="canvasLocation" x="2503" y="-723"/>
         </scene>
         <!--Time Table Search View Controller-->
         <scene sceneID="ot5-Nw-fx3">
@@ -428,7 +428,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pzy-Yd-Lfw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3284" y="-89"/>
+            <point key="canvasLocation" x="3141" y="7"/>
         </scene>
         <!--Time Table Setting Hour Item View Controller-->
         <scene sceneID="MS9-La-SEj">
@@ -478,7 +478,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7qy-XT-kBD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4712" y="38"/>
+            <point key="canvasLocation" x="4322" y="7"/>
         </scene>
         <!--Time Table Setting Day Item View Controller-->
         <scene sceneID="uQG-kZ-RdO">
@@ -528,7 +528,25 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HcW-VK-sCq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4712" y="-678"/>
+            <point key="canvasLocation" x="3897" y="-662"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="hpe-4a-X8U">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="PB9-4s-7T6" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Dqh-5M-cyR">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="v09-Tf-IFL" kind="relationship" relationship="rootViewController" id="G9h-hI-0DC"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jvS-Lu-Nvb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1699" y="-739"/>
         </scene>
     </scenes>
 </document>
