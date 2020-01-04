@@ -45,7 +45,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Realm.Configuration.defaultConfiguration = config
         let realm = try! Realm()
         let defaultURL = Realm.Configuration.defaultConfiguration.fileURL!
-//        try! FileManager.default.removeItem(at: defaultURL)
+        try! FileManager.default.removeItem(at: defaultURL)
         print(defaultURL)
         let result = realm.objects(TimeTable.self)
         print(result)
