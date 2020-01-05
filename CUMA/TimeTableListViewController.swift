@@ -23,7 +23,8 @@ class TimeTableListViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         // Do any additional setup after loading the view.
-        navigationItem.rightBarButtonItem = editButtonItem
+        navigationItem.leftBarButtonItem = editButtonItem
+        // 時間割の新規作成機能を追加する。
         let realm = try! Realm()
         let timeTables = realm.objects(TimeTable.self).sorted(byKeyPath: "createdAt")
         self.timeTableResults = timeTables
