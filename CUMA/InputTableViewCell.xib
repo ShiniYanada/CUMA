@@ -38,7 +38,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="InputTextField" destination="6WR-fJ-ui2" id="tdU-aD-wgW"/>
+                <outlet property="inputTextField" destination="6WR-fJ-ui2" id="HYR-tj-J9w"/>
                 <outlet property="titleLabel" destination="lhH-nI-I3L" id="0P1-bb-sga"/>
             </connections>
             <point key="canvasLocation" x="137.68115942028987" y="136.60714285714286"/>
