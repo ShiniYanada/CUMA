@@ -16,18 +16,40 @@ class CreateTimeTableViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: "InputTableViewCell", bundle: nil), forCellReuseIdentifier: "InputCell")
+        tableView.keyboardDismissMode = .interactive
         // Do any additional setup after loading the view.
+        let closeKeyboardTap = UITapGestureRecognizer(target: self, action: #selector(closeKeyboard))
+        // このプロパティがtrueだとcloseKeyboardTapのgestureのみが処理されcellのタップ処理などが実行されなくなる
+        closeKeyboardTap.cancelsTouchesInView = false
+        closeKeyboardTap.delegate = self
+        view.addGestureRecognizer(closeKeyboardTap)
     }
     
+    @objc func closeKeyboard() {
+        view.endEditing(true)
+    }
+    
+    // 作成ボタンを押し、realmにデータを保存する
     @IBAction func createTimeTable(_ sender: UIBarButtonItem) {
-        print("create")
+        for cell in tableView.visibleCells {
+            let inputCell = cell as! InputTableViewCell
+            print(inputCell.inputTextField.text!)
+        }
     }
     
+}
+
+extension CreateTimeTableViewController: UIGestureRecognizerDelegate {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        if tableView.indexPathForRow(at: touch.location(in: tableView)) != nil {
+            return false
+        }
+        return true
+    }
 }
 
 extension CreateTimeTableViewController: UITableViewDelegate {
@@ -63,6 +85,8 @@ extension CreateTimeTableViewController: UITableViewDataSource {
         inputCell.inputTextField.placeholder = placeholders[section][row]
         if section == 1 {
             inputCell.changeKeyboardTypeToPickerView(pickerData: pickerDataList[row])
+            inputCell.setInitialValue(pickerData: pickerDataList[row])
+            inputCell.inputTextField.tintColor = .clear
         }
         return inputCell
     }
