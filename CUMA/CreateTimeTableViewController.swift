@@ -20,25 +20,37 @@ class CreateTimeTableViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: "InputTableViewCell", bundle: nil), forCellReuseIdentifier: "InputCell")
+        tableView.register(UINib(nibName: "InputPickerViewCell", bundle: nil), forCellReuseIdentifier: "InputPickerCell")
         tableView.keyboardDismissMode = .interactive
-        // Do any additional setup after loading the view.
+        navigationItem.rightBarButtonItem?.isEnabled = false
+
         let closeKeyboardTap = UITapGestureRecognizer(target: self, action: #selector(closeKeyboard))
         // このプロパティがtrueだとcloseKeyboardTapのgestureのみが処理されcellのタップ処理などが実行されなくなる
         closeKeyboardTap.cancelsTouchesInView = false
         closeKeyboardTap.delegate = self
         view.addGestureRecognizer(closeKeyboardTap)
+        
+        let center = NotificationCenter.default
+        //textFieldのtextに変化があった時に通知する
+        center.addObserver(self, selector: #selector(textFieldDidChanged(_:)), name: UITextField.textDidChangeNotification, object: nil)
     }
     
     @objc func closeKeyboard() {
         view.endEditing(true)
     }
     
+    // textFieldに文字がない場合、作成ボタンを無効にし文字がある場合は有効にする
+    @objc func textFieldDidChanged(_ sender: Notification) {
+        let textField = sender.object as! UITextField
+        if let text = textField.text {
+            navigationItem.rightBarButtonItem?.isEnabled = (text != "")
+        }
+    }
+    
     // 作成ボタンを押し、realmにデータを保存する
     @IBAction func createTimeTable(_ sender: UIBarButtonItem) {
-        for cell in tableView.visibleCells {
-            let inputCell = cell as! InputTableViewCell
-            print(inputCell.inputTextField.text!)
-        }
+        let cell = tableView.visibleCells[1] as! InputPickerViewCell
+        print(cell.inputTextField.text!)
     }
     
 }
@@ -54,8 +66,16 @@ extension CreateTimeTableViewController: UIGestureRecognizerDelegate {
 
 extension CreateTimeTableViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath) as! InputTableViewCell
-        cell.inputTextField.becomeFirstResponder()
+        switch indexPath.section {
+        case 0:
+            let cell = tableView.cellForRow(at: indexPath) as! InputTableViewCell
+            cell.inputTextField.becomeFirstResponder()
+        case 1:
+            let cell = tableView.cellForRow(at: indexPath) as! InputPickerViewCell
+            cell.inputTextField.becomeFirstResponder()
+        default:
+            break
+        }
     }
 }
 
@@ -66,28 +86,23 @@ extension CreateTimeTableViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch section {
-        case 0:
-            return 1
-        case 1:
-            return titles.count
-        default:
-            return 0
-        }
+        return titles[section].count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let section = indexPath.section
         let row = indexPath.row
         
-        let inputCell = tableView.dequeueReusableCell(withIdentifier: "InputCell", for: indexPath) as! InputTableViewCell
-        inputCell.titleLabel?.text = titles[section][row]
-        inputCell.inputTextField.placeholder = placeholders[section][row]
-        if section == 1 {
-            inputCell.changeKeyboardTypeToPickerView(pickerData: pickerDataList[row])
-            inputCell.setInitialValue(pickerData: pickerDataList[row])
-            inputCell.inputTextField.tintColor = .clear
+        if section == 0 {
+            let inputCell = tableView.dequeueReusableCell(withIdentifier: "InputCell", for: indexPath) as! InputTableViewCell
+            inputCell.titleLabel.text = titles[section][row]
+            inputCell.inputTextField.placeholder = placeholders[section][row]
+            return inputCell
+        } else {
+            let inputCell = tableView.dequeueReusableCell(withIdentifier: "InputPickerCell", for: indexPath) as! InputPickerViewCell
+            inputCell.titleLabel.text = titles[section][row]
+            inputCell.iniPickerView(pickerData: pickerDataList[row])
+            return inputCell
         }
-        return inputCell
     }
 }
