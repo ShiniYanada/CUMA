@@ -21,22 +21,27 @@ class InputTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
         // Configure the view for the selected state
     }
     
+    // keyboardをpickerViewにする
     func changeKeyboardTypeToPickerView(pickerData: [String]) {
         let pickerView = UIPickerView()
         pickerView.delegate = self
         pickerView.dataSource = self
-        self.pickerDataList = pickerData
-        self.inputTextField.inputView = pickerView
+        pickerDataList = pickerData
+        inputTextField.inputView = pickerView
+    }
+    
+    // pickerViewの場合にtextFieldに初期値を設定する
+    func setInitialValue(pickerData: [String]) {
+        inputTextField.text = pickerData[0]
     }
 }
 
 extension InputTableViewCell: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        print(pickerDataList[row])
+        inputTextField.text = pickerDataList[row]
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
