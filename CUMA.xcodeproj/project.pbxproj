@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		3607C72C2363E9ED0043C108 /* TimeTableISearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3607C72B2363E9ED0043C108 /* TimeTableISearchViewController.swift */; };
+		361D459E23C067E100FF005D /* CreateTimeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361D459D23C067E100FF005D /* CreateTimeTableViewController.swift */; };
+		361D45A123C1DC3700FF005D /* InputTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361D459F23C1DC3600FF005D /* InputTableViewCell.swift */; };
+		361D45A223C1DC3700FF005D /* InputTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 361D45A023C1DC3600FF005D /* InputTableViewCell.xib */; };
+		361D45A423C2D5E900FF005D /* TextFieldForCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361D45A323C2D5E900FF005D /* TextFieldForCell.swift */; };
 		361D8C3A23AE4DA800167385 /* initial-compact.realm in Resources */ = {isa = PBXBuildFile; fileRef = 361D8C3923AE4D8F00167385 /* initial-compact.realm */; };
 		364229B7236C02D200625188 /* Lesson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364229B6236C02D200625188 /* Lesson.swift */; };
 		364229B9236C61CA00625188 /* ClassDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364229B8236C61CA00625188 /* ClassDetailViewController.swift */; };
@@ -15,6 +19,9 @@
 		36517420239CEEBC009A54EB /* TimeTableSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3651741F239CEEBC009A54EB /* TimeTableSettingViewController.swift */; };
 		3651742E239E11A8009A54EB /* TimeTableSettingDayItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3651742D239E11A8009A54EB /* TimeTableSettingDayItemViewController.swift */; };
 		36517433239E73BA009A54EB /* TimeTableSettingHourItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36517432239E73BA009A54EB /* TimeTableSettingHourItemViewController.swift */; };
+		365FAE4223C5FF0E000B7244 /* PickerTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365FAE4123C5FF0E000B7244 /* PickerTextField.swift */; };
+		365FAE4523C601E0000B7244 /* InputPickerViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365FAE4323C601E0000B7244 /* InputPickerViewCell.swift */; };
+		365FAE4623C601E0000B7244 /* InputPickerViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 365FAE4423C601E0000B7244 /* InputPickerViewCell.xib */; };
 		367A34B1236A774D000458EC /* ClassCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367A34AF236A774D000458EC /* ClassCell.swift */; };
 		367A34B2236A774D000458EC /* ClassCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 367A34B0236A774D000458EC /* ClassCell.xib */; };
 		369D9626237D047E000C2616 /* TimeTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369D9625237D047E000C2616 /* TimeTable.swift */; };
@@ -34,6 +41,10 @@
 
 /* Begin PBXFileReference section */
 		3607C72B2363E9ED0043C108 /* TimeTableISearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableISearchViewController.swift; sourceTree = "<group>"; };
+		361D459D23C067E100FF005D /* CreateTimeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTimeTableViewController.swift; sourceTree = "<group>"; };
+		361D459F23C1DC3600FF005D /* InputTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputTableViewCell.swift; sourceTree = "<group>"; };
+		361D45A023C1DC3600FF005D /* InputTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InputTableViewCell.xib; sourceTree = "<group>"; };
+		361D45A323C2D5E900FF005D /* TextFieldForCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldForCell.swift; sourceTree = "<group>"; };
 		361D8C3923AE4D8F00167385 /* initial-compact.realm */ = {isa = PBXFileReference; lastKnownFileType = file; path = "initial-compact.realm"; sourceTree = "<group>"; };
 		364229B6236C02D200625188 /* Lesson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lesson.swift; sourceTree = "<group>"; };
 		364229B8236C61CA00625188 /* ClassDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassDetailViewController.swift; sourceTree = "<group>"; };
@@ -41,6 +52,9 @@
 		3651741F239CEEBC009A54EB /* TimeTableSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableSettingViewController.swift; sourceTree = "<group>"; };
 		3651742D239E11A8009A54EB /* TimeTableSettingDayItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableSettingDayItemViewController.swift; sourceTree = "<group>"; };
 		36517432239E73BA009A54EB /* TimeTableSettingHourItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableSettingHourItemViewController.swift; sourceTree = "<group>"; };
+		365FAE4123C5FF0E000B7244 /* PickerTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerTextField.swift; sourceTree = "<group>"; };
+		365FAE4323C601E0000B7244 /* InputPickerViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputPickerViewCell.swift; sourceTree = "<group>"; };
+		365FAE4423C601E0000B7244 /* InputPickerViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InputPickerViewCell.xib; sourceTree = "<group>"; };
 		367A34AF236A774D000458EC /* ClassCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassCell.swift; sourceTree = "<group>"; };
 		367A34B0236A774D000458EC /* ClassCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ClassCell.xib; sourceTree = "<group>"; };
 		369D9625237D047E000C2616 /* TimeTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTable.swift; sourceTree = "<group>"; };
@@ -99,7 +113,14 @@
 				36C2B368236136AC00D5D5CB /* SceneDelegate.swift */,
 				36C2B36A236136AC00D5D5CB /* ViewController.swift */,
 				36C2B36C236136AC00D5D5CB /* Main.storyboard */,
+				361D459F23C1DC3600FF005D /* InputTableViewCell.swift */,
+				361D45A023C1DC3600FF005D /* InputTableViewCell.xib */,
+				365FAE4323C601E0000B7244 /* InputPickerViewCell.swift */,
+				365FAE4423C601E0000B7244 /* InputPickerViewCell.xib */,
+				361D45A323C2D5E900FF005D /* TextFieldForCell.swift */,
 				364229B8236C61CA00625188 /* ClassDetailViewController.swift */,
+				361D459D23C067E100FF005D /* CreateTimeTableViewController.swift */,
+				365FAE4123C5FF0E000B7244 /* PickerTextField.swift */,
 				364E00BA237919D40027A053 /* TimeTableListViewController.swift */,
 				369D9625237D047E000C2616 /* TimeTable.swift */,
 				367A34AF236A774D000458EC /* ClassCell.swift */,
@@ -201,10 +222,12 @@
 			files = (
 				361D8C3A23AE4DA800167385 /* initial-compact.realm in Resources */,
 				36C2B373236136B000D5D5CB /* LaunchScreen.storyboard in Resources */,
+				361D45A223C1DC3700FF005D /* InputTableViewCell.xib in Resources */,
 				36C2B3872361D2B700D5D5CB /* HourCell.xib in Resources */,
 				36C2B3832361A3AD00D5D5CB /* TimeTableCell.xib in Resources */,
 				36C2B370236136B000D5D5CB /* Assets.xcassets in Resources */,
 				36C2B36E236136AC00D5D5CB /* Main.storyboard in Resources */,
+				365FAE4623C601E0000B7244 /* InputPickerViewCell.xib in Resources */,
 				367A34B2236A774D000458EC /* ClassCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -259,14 +282,19 @@
 				36517420239CEEBC009A54EB /* TimeTableSettingViewController.swift in Sources */,
 				364E00BB237919D40027A053 /* TimeTableListViewController.swift in Sources */,
 				36C2B36B236136AC00D5D5CB /* ViewController.swift in Sources */,
+				365FAE4523C601E0000B7244 /* InputPickerViewCell.swift in Sources */,
 				36C2B3862361D2B700D5D5CB /* HourCell.swift in Sources */,
 				36C2B367236136AC00D5D5CB /* AppDelegate.swift in Sources */,
 				36517433239E73BA009A54EB /* TimeTableSettingHourItemViewController.swift in Sources */,
+				361D459E23C067E100FF005D /* CreateTimeTableViewController.swift in Sources */,
+				365FAE4223C5FF0E000B7244 /* PickerTextField.swift in Sources */,
 				367A34B1236A774D000458EC /* ClassCell.swift in Sources */,
 				36C2B37B23613A8E00D5D5CB /* TimeTableViewController.swift in Sources */,
+				361D45A423C2D5E900FF005D /* TextFieldForCell.swift in Sources */,
 				36C2B369236136AC00D5D5CB /* SceneDelegate.swift in Sources */,
 				369D9626237D047E000C2616 /* TimeTable.swift in Sources */,
 				36C2B3822361A3AD00D5D5CB /* TimeTableCell.swift in Sources */,
+				361D45A123C1DC3700FF005D /* InputTableViewCell.swift in Sources */,
 				364229B9236C61CA00625188 /* ClassDetailViewController.swift in Sources */,
 				364229B7236C02D200625188 /* Lesson.swift in Sources */,
 			);
