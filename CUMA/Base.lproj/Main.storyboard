@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="MOR-j1-BAH">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="MOR-j1-BAH">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -230,14 +230,57 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="20U-ZI-idh"/>
                     </view>
-                    <navigationItem key="navigationItem" title="時間割" id="9zU-Om-kKz"/>
+                    <navigationItem key="navigationItem" title="時間割" id="9zU-Om-kKz">
+                        <barButtonItem key="rightBarButtonItem" title="新規作成" id="U4y-EW-C1G">
+                            <connections>
+                                <segue destination="NtH-u2-64L" kind="show" id="V9e-ZM-USy"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="MKV-8m-JM0" id="N9C-Tb-Ki9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tai-uV-bQh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2503" y="-723"/>
+            <point key="canvasLocation" x="1932" y="-808"/>
+        </scene>
+        <!--Create Time Table View Controller-->
+        <scene sceneID="fNU-1V-kxm">
+            <objects>
+                <viewController id="NtH-u2-64L" customClass="CreateTimeTableViewController" customModule="CUMA" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Oc3-sS-oxn">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="0PC-fY-dwH">
+                                <rect key="frame" x="0.0" y="56" width="414" height="752"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="bJS-Pc-XOt" firstAttribute="bottom" secondItem="0PC-fY-dwH" secondAttribute="bottom" id="IRj-UR-2Lb"/>
+                            <constraint firstItem="bJS-Pc-XOt" firstAttribute="trailing" secondItem="0PC-fY-dwH" secondAttribute="trailing" id="kfc-6m-foH"/>
+                            <constraint firstItem="0PC-fY-dwH" firstAttribute="leading" secondItem="bJS-Pc-XOt" secondAttribute="leading" id="rEw-D9-1Er"/>
+                            <constraint firstItem="0PC-fY-dwH" firstAttribute="top" secondItem="bJS-Pc-XOt" secondAttribute="top" id="zgQ-iq-jMU"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="bJS-Pc-XOt"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="GfG-PH-pba">
+                        <barButtonItem key="rightBarButtonItem" title="作成" id="N0q-M9-kFD">
+                            <connections>
+                                <action selector="createTimeTable:" destination="NtH-u2-64L" id="RIs-XL-UaH"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="0PC-fY-dwH" id="h3l-4I-tLC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Yez-dx-gKK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2748" y="-808"/>
         </scene>
         <!--Time Table Search View Controller-->
         <scene sceneID="ot5-Nw-fx3">
@@ -377,7 +420,7 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="TimeTableSettingInputCell" textLabel="dGq-li-Lmr" detailTextLabel="Z6q-75-exE" style="IBUITableViewCellStyleValue1" id="g7O-lF-ae8">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="TimeTableSettingInputCell" textLabel="dGq-li-Lmr" detailTextLabel="TFS-Ou-JJ5" style="IBUITableViewCellStyleValue1" id="g7O-lF-ae8">
                                         <rect key="frame" x="0.0" y="55.333332061767578" width="414" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="g7O-lF-ae8" id="FZz-Nr-Kop">
@@ -391,8 +434,8 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="right detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Z6q-75-exE">
-                                                    <rect key="frame" x="293.33333333333331" y="11.999999999999998" width="81.666666666666671" height="20.333333333333332"/>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="TFS-Ou-JJ5">
+                                                    <rect key="frame" x="331" y="11.999999999999998" width="44" height="20.333333333333332"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -478,7 +521,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7qy-XT-kBD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4322" y="7"/>
+            <point key="canvasLocation" x="4265" y="297"/>
         </scene>
         <!--Time Table Setting Day Item View Controller-->
         <scene sceneID="uQG-kZ-RdO">
@@ -528,7 +571,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HcW-VK-sCq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3897" y="-662"/>
+            <point key="canvasLocation" x="4264" y="-399"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="hpe-4a-X8U">
@@ -546,7 +589,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jvS-Lu-Nvb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1699" y="-739"/>
+            <point key="canvasLocation" x="1136" y="-807"/>
         </scene>
     </scenes>
 </document>
