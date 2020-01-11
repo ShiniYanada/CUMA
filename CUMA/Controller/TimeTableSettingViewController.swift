@@ -150,5 +150,6 @@ extension TimeTableSettingViewController: InputTableViewCellDelegate {
         if let text = textField.text {
             timeTableName = text
         }
+        textField.resignFirstResponder()
     }
 }
