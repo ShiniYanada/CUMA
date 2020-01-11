@@ -40,6 +40,7 @@ class TimeTableViewController: UIViewController {
         let timeTable = realm.objects(TimeTable.self).filter("selected == true").first
         numberOfDays = timeTable!.days
         numberOfHours = timeTable!.hours
+        navigationItem.title = timeTable!.name
 
         switch numberOfDays {
         case 5:
@@ -50,11 +51,6 @@ class TimeTableViewController: UIViewController {
         default:
             break
         }
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        print("viewWillAppear in TimeTableViewController")
-        super.viewWillAppear(animated)
     }
     
     override func viewDidLayoutSubviews() {
@@ -145,8 +141,6 @@ extension TimeTableViewController: UICollectionViewDataSource {
         }
         
     }
-    
-    
 }
 
 extension TimeTableViewController: UICollectionViewDelegate {
