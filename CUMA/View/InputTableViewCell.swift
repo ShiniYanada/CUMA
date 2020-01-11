@@ -13,10 +13,12 @@ class InputTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var inputTextField: TextFieldForCell!
     var pickerDataList: [String]!
+    var delegate: InputTableViewCellDelegate!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        inputTextField.delegate = self
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -57,4 +59,17 @@ extension InputTableViewCell: UIPickerViewDataSource {
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return pickerDataList.count
     }
+}
+
+extension InputTableViewCell: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        delegate.pressReturn(textField)
+        return true
+    }
+}
+
+// このCellのTextFieldでReturnが押下された時にこのprotocolを準拠しているVCに値を渡すためのprotocol
+protocol InputTableViewCellDelegate {
+    // このdelegateを準拠したprotocolにtexdtFieldインスタンスを渡す
+    func pressReturn(_ textField: UITextField) -> ()
 }
