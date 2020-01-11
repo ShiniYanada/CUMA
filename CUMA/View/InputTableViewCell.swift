@@ -13,7 +13,7 @@ class InputTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var inputTextField: TextFieldForCell!
     var pickerDataList: [String]!
-    var delegate: InputTableViewCellDelegate!
+    var delegate: InputTableViewCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -63,7 +63,7 @@ extension InputTableViewCell: UIPickerViewDataSource {
 
 extension InputTableViewCell: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        delegate.pressReturn(textField)
+        delegate?.pressReturn(textField)
         return true
     }
 }
