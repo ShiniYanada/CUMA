@@ -38,10 +38,8 @@ class TimeTableViewController: UIViewController {
         
         let realm = try! Realm()
         let timeTable = realm.objects(TimeTable.self).filter("selected == true").first
-        print(timeTable!.days)
-        print(timeTable!.hours)
-        self.numberOfDays = timeTable!.days
-        self.numberOfHours = timeTable!.hours
+        numberOfDays = timeTable!.days
+        numberOfHours = timeTable!.hours
 
         switch numberOfDays {
         case 5:
@@ -52,6 +50,11 @@ class TimeTableViewController: UIViewController {
         default:
             break
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        print("viewWillAppear in TimeTableViewController")
+        super.viewWillAppear(animated)
     }
     
     override func viewDidLayoutSubviews() {
@@ -90,26 +93,28 @@ class TimeTableViewController: UIViewController {
         return layout
     }
     
-    // 時間割の設定に変更があった場合に時間割の時限、曜日をデータを元に再描画する
-    func updateTimeTable() {
-        timeTableCollectionView.collectionViewLayout = createCompositionalLayout()
+    // 時間割の変更、設定を更新した際に再表示する
+    func changeTimeTable() {
+        let realm = try! Realm()
+        let timeTable = realm.objects(TimeTable.self).filter("selected = true").first
+        numberOfDays = timeTable!.days
+        numberOfHours = timeTable!.hours
+        navigationItem.title = timeTable!.name
         switch numberOfDays {
         case 5:
-            print("平日")
             self.dayStackView.arrangedSubviews[5].isHidden = true
             self.dayStackView.arrangedSubviews[6].isHidden = true
         case 6:
-            print("土曜日")
             self.dayStackView.arrangedSubviews[5].isHidden = false
             self.dayStackView.arrangedSubviews[6].isHidden = true
         case 7:
-            print("平日")
             self.dayStackView.arrangedSubviews[5].isHidden = false
             self.dayStackView.arrangedSubviews[6].isHidden = false
         default:
             break
         }
-        self.timeTableCollectionView.reloadData()
+        timeTableCollectionView.collectionViewLayout = createCompositionalLayout()
+        timeTableCollectionView.reloadData()
     }
 }
 
