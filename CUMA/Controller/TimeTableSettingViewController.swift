@@ -35,6 +35,17 @@ class TimeTableSettingViewController: UIViewController {
         closeKeyboardTap.cancelsTouchesInView = false
         closeKeyboardTap.delegate = self
         view.addGestureRecognizer(closeKeyboardTap)
+        
+        // //textFieldのtextに変化があった時に通知する処理の登録
+        let center = NotificationCenter.default
+        center.addObserver(self, selector: #selector(textFieldDidChanged(_:)), name: UITextField.textDidChangeNotification, object: nil)
+    }
+    
+    @objc func textFieldDidChanged(_ sender: Notification) {
+        let textField = sender.object as! UITextField
+        if let text = textField.text {
+            timeTableName = text
+        }
     }
     
     @objc func closeKeyboard() {
@@ -43,18 +54,13 @@ class TimeTableSettingViewController: UIViewController {
     
     @IBAction func clickSaveButton(_ sender: UIBarButtonItem) {
         let realm = try! Realm()
-        let isNameChanged = timeTableName != nil ? true : false
-        let isDayChanged = timeTableDayIndex != nil ? true : false
-        let isHourChanged = timeTableHourIndex != nil ? true : false
-        let isChanged = isNameChanged || isHourChanged || isDayChanged
+        let inputCell = tableView.visibleCells[0] as! InputTableViewCell
         let timeTableViewController = navigationController?.viewControllers[0] as! TimeTableViewController
         
-        if isChanged {
-            try! realm.write {
-                self.timeTable.name = isNameChanged ? self.timeTableName! : self.timeTable.name
-                self.timeTable.days = isDayChanged ? self.timeTableDayIndex! + 5 : self.timeTable.days
-                self.timeTable.hours = isHourChanged ? self.timeTableHourIndex! + 4 : self.timeTable.hours
-            }
+        try! realm.write {
+            self.timeTable.name = inputCell.inputTextField.text ?? "時間割"
+            self.timeTable.days = (self.timeTableDayIndex != nil) ? self.timeTableDayIndex! + 5 : self.timeTable.days
+            self.timeTable.hours = (timeTableHourIndex != nil) ? self.timeTableHourIndex! + 4 : self.timeTable.hours
         }
         //設定した内容に時間割を再表示させる
         timeTableViewController.changeTimeTable()
@@ -81,7 +87,6 @@ class TimeTableSettingViewController: UIViewController {
 extension TimeTableSettingViewController: UIGestureRecognizerDelegate {
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
         if let indexPath = tableView.indexPathForRow(at: touch.location(in: tableView)) {
-            print(indexPath)
             if indexPath.section == 0 {
                 return false
             }
@@ -122,6 +127,7 @@ extension TimeTableSettingViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if (indexPath.section == 0) {
             let inputCell = tableView.dequeueReusableCell(withIdentifier: "InputCell", for: indexPath) as! InputTableViewCell
+            inputCell.delegate = self
             inputCell.titleLabel.text = settingTitles[indexPath.section][indexPath.row]
             inputCell.inputTextField.text = timeTableName ?? timeTable.name
             return inputCell
@@ -137,5 +143,12 @@ extension TimeTableSettingViewController: UITableViewDataSource {
             return cell
         }
     }
-    
+}
+
+extension TimeTableSettingViewController: InputTableViewCellDelegate {
+    func pressReturn(_ textField: UITextField) {
+        if let text = textField.text {
+            timeTableName = text
+        }
+    }
 }
