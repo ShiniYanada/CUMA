@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class CreateTimeTableViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
@@ -49,8 +50,42 @@ class CreateTimeTableViewController: UIViewController {
     
     // 作成ボタンを押し、realmにデータを保存する
     @IBAction func createTimeTable(_ sender: UIBarButtonItem) {
-        let cell = tableView.visibleCells[1] as! InputPickerViewCell
-        print(cell.inputTextField.text!)
+        let nameCell = tableView.visibleCells[0] as! InputTableViewCell
+        let hourCell = tableView.visibleCells[1] as! InputPickerViewCell
+        let dayCell = tableView.visibleCells[2] as! InputPickerViewCell
+        let name = nameCell.inputTextField.text!
+        let hourText = hourCell.inputTextField.text!
+        let dayText = dayCell.inputTextField.text!
+        var realm: Realm!
+        
+        // 曜日と時限のデータがpickerViewにあるデータ以外だった場合の処理
+        if !pickerDataList[0].contains(hourText) || !pickerDataList[1].contains(dayText) {
+            print("day or hour is invalid")
+            return
+        }
+        let hour = Int(hourText)!
+        let day = pickerDataList[1].firstIndex(of: dayText)! + 5
+        // 時間割の名称が入力されていた場合にrealmに保存
+        if name != "" {
+            let timeTable = TimeTable(value: [name, day, hour, true])
+            realm = try! Realm()
+            try! realm.write {
+                realm.add(timeTable)
+            }
+        } else {
+            print("name is empty")
+            return
+        }
+        //　表示する時間割を変える処理
+        let currentTimeTable = realm.objects(TimeTable.self).filter("selected == true").first
+        try! realm.write {
+            currentTimeTable?.selected = false
+        }
+        let tabVC = presentingViewController as! UITabBarController
+        let navigationVC = tabVC.selectedViewController as! UINavigationController
+        let timeTableVC = navigationVC.topViewController as! TimeTableViewController
+        timeTableVC.changeTimeTable()
+        dismiss(animated: true, completion: nil)
     }
     
 }
