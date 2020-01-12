@@ -130,6 +130,7 @@ extension CreateTimeTableViewController: UITableViewDataSource {
         
         if section == 0 {
             let inputCell = tableView.dequeueReusableCell(withIdentifier: "InputCell", for: indexPath) as! InputTableViewCell
+            inputCell.delegate = self
             inputCell.titleLabel.text = titles[section][row]
             inputCell.inputTextField.placeholder = placeholders[section][row]
             return inputCell
@@ -139,5 +140,11 @@ extension CreateTimeTableViewController: UITableViewDataSource {
             inputCell.iniPickerView(pickerData: pickerDataList[row])
             return inputCell
         }
+    }
+}
+
+extension CreateTimeTableViewController: InputTableViewCellDelegate {
+    func pressReturn(_ textField: UITextField) {
+        textField.resignFirstResponder()
     }
 }
