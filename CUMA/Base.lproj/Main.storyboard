@@ -245,7 +245,7 @@
             </objects>
             <point key="canvasLocation" x="1932" y="-808"/>
         </scene>
-        <!--Create Time Table View Controller-->
+        <!--新しい時間割-->
         <scene sceneID="fNU-1V-kxm">
             <objects>
                 <viewController id="NtH-u2-64L" customClass="CreateTimeTableViewController" customModule="CUMA" customModuleProvider="target" sceneMemberID="viewController">
@@ -267,7 +267,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="bJS-Pc-XOt"/>
                     </view>
-                    <navigationItem key="navigationItem" id="GfG-PH-pba">
+                    <navigationItem key="navigationItem" title="新しい時間割" id="GfG-PH-pba">
                         <barButtonItem key="rightBarButtonItem" title="作成" id="N0q-M9-kFD">
                             <connections>
                                 <action selector="createTimeTable:" destination="NtH-u2-64L" id="RIs-XL-UaH"/>
