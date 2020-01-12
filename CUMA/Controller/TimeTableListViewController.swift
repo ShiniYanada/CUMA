@@ -15,8 +15,10 @@ class TimeTableListViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     var items = ["test1", "test2"]
     var selectedIndexPath: IndexPath?
+    // Results型からArrayに変換したrealmデータの配列
     var timeTables: [TimeTable]!
     var timeTableResults: Results<TimeTable>!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -45,7 +47,6 @@ class TimeTableListViewController: UIViewController {
         let fileName = URL(string: file)!.lastPathComponent
         NSLog("\(fileName) #\(line) \(function): \(message)")
     }
-
 }
 
 extension TimeTableListViewController: UITableViewDelegate {
@@ -103,10 +104,8 @@ extension TimeTableListViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         let timeTable = timeTables[indexPath.row]
         cell.textLabel?.text = timeTable.name
-        cell.selectionStyle = .none
         if timeTable.selected {
             cell.accessoryType = .checkmark
-            tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
         } else {
             cell.accessoryType = .none
         }
