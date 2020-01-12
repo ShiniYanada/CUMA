@@ -75,19 +75,24 @@ extension TimeTableListViewController: UITableViewDelegate {
     
     // Cellタップ後の処理
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath)
-        cell?.accessoryType = .checkmark
-        selectedIndexPath = indexPath
-    }
-    
-    // Tells the delegate that a specified row is about to be selected.
-    // 返り値でこれから選択されるSection/Rowを指定する。
-    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-        if let selectedRow = tableView.indexPathForSelectedRow {
-            let cell = tableView.cellForRow(at: selectedRow)
-            cell?.accessoryType = .none
+        let timeTable = timeTableResults[indexPath.row]
+        if timeTable.selected {
+            dismiss(animated: true, completion: nil)
+            return
         }
-        return indexPath
+        
+        let realm = try! Realm()
+        let currentTimeTable = realm.objects(TimeTable.self).filter("selected == true").first
+        try! realm.write {
+            currentTimeTable?.selected = false
+            timeTable.selected = true
+        }
+        
+        let tabVC = presentingViewController as! UITabBarController
+        let navigationVC = tabVC.selectedViewController as! UINavigationController
+        let timeTableVC = navigationVC.topViewController as! TimeTableViewController
+        timeTableVC.changeTimeTable()
+        dismiss(animated: true, completion: nil)
     }
 }
 
