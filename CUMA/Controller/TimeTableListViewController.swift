@@ -13,11 +13,8 @@ import RealmSwift
 class TimeTableListViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
-    var items = ["test1", "test2"]
-    var selectedIndexPath: IndexPath?
     // Results型からArrayに変換したrealmデータの配列
-    var timeTables: [TimeTable]!
-    var timeTableResults: Results<TimeTable>!
+    var timeTables: Results<TimeTable>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,22 +22,10 @@ class TimeTableListViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         // Do any additional setup after loading the view.
-        navigationItem.leftBarButtonItem = editButtonItem
         // 時間割の新規作成機能を追加する。
         let realm = try! Realm()
         let timeTables = realm.objects(TimeTable.self).sorted(byKeyPath: "createdAt")
-        self.timeTableResults = timeTables
-        self.timeTables = timeTables.map {$0}
-    }
-    //navigationBarのEditボタンを押した時にtableViewの編集モードをON/OFFにする
-    override func setEditing(_ editing: Bool, animated: Bool) {
-        super.setEditing(editing, animated: animated)
-        tableView.setEditing(editing, animated: animated)
-        if !editing {
-            if let selectedIndexPath = selectedIndexPath {
-                tableView.selectRow(at: selectedIndexPath, animated: true, scrollPosition: .none)
-            }
-        }
+        self.timeTables = timeTables
     }
     
     func debugLog(_ message: String = "", function: String = #function, file: String = #file, line: Int = #line) {
@@ -52,30 +37,43 @@ class TimeTableListViewController: UIViewController {
 extension TimeTableListViewController: UITableViewDelegate {
     // 編集モードの時のCellの左側にInsertion/Delete/Noneのいずれかを表示
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
-        if tableView.isEditing {
-            if timeTables.count == 1 {
-                return .none
-            } else {
-                return .delete
-            }
+        if timeTables.count == 1 {
+            return .none
+        } else {
+            return .delete
         }
-        return .none
     }
     // Cellの削除ボタンがを押された時の処理
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if timeTables.count != 1 {
-            tableView.deleteRows(at: [indexPath as IndexPath], with: .automatic)
+        if timeTables.count == 1 {
+            print("timeTable is one")
+            return
+        }
+        if editingStyle == .delete {
             let realm = try! Realm()
+            let isCurrent = timeTables[indexPath.row].selected
             try! realm.write {
-                realm.delete(timeTableResults[indexPath.row])
+                realm.delete(timeTables[indexPath.row])
+                tableView.deleteRows(at: [indexPath], with: .automatic)
             }
-            self.timeTables = timeTableResults.map {$0}
+            //　現在設定している時間割を削除した場合最初に見つかった時間割を表示させる
+            if isCurrent {
+                let timeTable = realm.objects(TimeTable.self).first
+                try! realm.write {
+                    timeTable!.selected = true
+                }
+                let tabVC = presentingViewController as! UITabBarController
+                let navigationVC = tabVC.selectedViewController as! UINavigationController
+                let timeTableVC = navigationVC.topViewController as! TimeTableViewController
+                timeTableVC.changeTimeTable()
+                dismiss(animated: true, completion: nil)
+            }
         }
     }
     
     // Cellタップ後の処理
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let timeTable = timeTableResults[indexPath.row]
+        let timeTable = timeTables[indexPath.row]
         if timeTable.selected {
             dismiss(animated: true, completion: nil)
             return
@@ -116,25 +114,9 @@ extension TimeTableListViewController: UITableViewDataSource {
         }
         return cell
     }
-    // 編集モードでCellの並び替えを可能にするかどうか
-    func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        return true
-    }
     // falseの場合Insertion/Deleteの記号が表示されない。trueの場合Insertion/Deleteができるようになる
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
-    }
-    
-    func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
-        return false
-    }
-    
-    //並び替え実行時に処理されるこの関数を実装しないとCellの右側に記号が表示されない
-    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        let timeTable = timeTables[sourceIndexPath.row]
-        timeTables.remove(at:sourceIndexPath.row)
-        timeTables.insert(timeTable, at: destinationIndexPath.row)
-        tableView.reloadData()
     }
     
     // isEditing = falseの時、セルをスワイプさせて削除しようとすると、
@@ -147,4 +129,7 @@ extension TimeTableListViewController: UITableViewDataSource {
     // 次に、tableView(_:editingStyleForRowAt:)でInsertion、Delete、Noneのいずれかにする処理をする
     // 次に、tableView(_:shouldIndentWhileEditingRowAt:)が呼ばれる。
     // 最後に、tableView(_:canMoveRowAt:)が呼ばれる。
+    
+    // スワイプで削除しようとするときに毎回tableView(_:editingStyleForRowAt:)が呼ばれ
+    // .deleteや.noneなどを判断する。
 }
