@@ -75,7 +75,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
 
-    func createInitialData(){
+    func createInitialCompactedData(){
         // 初期データ
         let timeTable = TimeTable()
         timeTable.name = "時間割1"
@@ -103,22 +103,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let defaultParentURL = defaultURL.deletingLastPathComponent()
         //realm圧縮データのファイルパスを設定
         let compactedURL = defaultParentURL.appendingPathComponent("initial-compact.realm")
-        let initialDataURL = defaultURL.appendingPathComponent("timetable.realm")
         print(defaultURL)
         // 圧縮データファイルパスに圧縮データを作成
         try! realm.writeCopy(toFile: compactedURL)
-        
-        // timetable.realmにデータが存在していれば何もしない
-        // 存在していなかったら圧縮初期データをdefault.realmに追加
-        if FileManager.default.fileExists(atPath: initialDataURL.path) {
-            print("exist")
-        } else {
-            print("not exist")
-            let bundleRealmPath = Bundle.main.url(forResource: "initial-compact", withExtension: "realm")
-            do {
-                try FileManager.default.copyItem(at: bundleRealmPath!, to: initialDataURL)
-            } catch { print("coppy error")}
-        }
     }
 
 }
