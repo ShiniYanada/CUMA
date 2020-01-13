@@ -13,6 +13,7 @@ class ClassCell: UITableViewCell {
     @IBOutlet weak var courseTitleLabel: UILabel!
     @IBOutlet weak var teacherLabel: UILabel!
     @IBOutlet weak var classRoomLabel: UILabel!
+    @IBOutlet weak var registerClassBtn: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -23,6 +24,12 @@ class ClassCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    func setup(lesson: Lesson){
+        courseTitleLabel.text = lesson.course
+        teacherLabel.text = lesson.teacher
+        classRoomLabel.text = lesson.room
     }
     
 }

@@ -1,0 +1,30 @@
+PODS:
+  - InstantSearchClient (7.0.3)
+  - Realm (4.3.0):
+    - Realm/Headers (= 4.3.0)
+  - Realm/Headers (4.3.0)
+  - RealmSwift (4.3.0):
+    - Realm (= 4.3.0)
+  - SwiftyJSON (4.3.0)
+
+DEPENDENCIES:
+  - InstantSearchClient (~> 7.0)
+  - RealmSwift
+  - SwiftyJSON (~> 4.0)
+
+SPEC REPOS:
+  trunk:
+    - InstantSearchClient
+    - Realm
+    - RealmSwift
+    - SwiftyJSON
+
+SPEC CHECKSUMS:
+  InstantSearchClient: 289fad11a1bd3bab759bbd80376b3a30a897cbee
+  Realm: 9357c3589555793e1860a7104a7412bca4a48d99
+  RealmSwift: 402f1e379a8ef82c635313037b043f0f06de880c
+  SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
+
+PODFILE CHECKSUM: 6753c22d3eb02daf0cf19372bd4c58669946ab15
+
+COCOAPODS: 1.8.4
