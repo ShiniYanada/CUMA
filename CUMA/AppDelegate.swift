@@ -30,21 +30,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        let defaultURL = Realm.Configuration.defaultConfiguration.fileURL!
+        let defaultParentURL = defaultURL.deletingLastPathComponent()
+        let initialDataURL = defaultParentURL.appendingPathComponent("timetable.realm")
         let config = Realm.Configuration(
-            schemaVersion: 3,
+            fileURL: initialDataURL,
+            schemaVersion: 6,
             migrationBlock: { migration, oldSchemaVersion in
-                if (oldSchemaVersion < 3) {
-                    migration.enumerateObjects(ofType: TimeTable.className(), { oldObject, newObject in
-                        newObject!["createdAt"] = Date()
+                if (oldSchemaVersion < 6) {
+                    migration.enumerateObjects(ofType: Class.className(), { oldObject, newObject in
+                        
                     })
                 }
             }
         )
         Realm.Configuration.defaultConfiguration = config
         let realm = try! Realm()
-        let defaultURL = Realm.Configuration.defaultConfiguration.fileURL!
-        let defaultParentURL = defaultURL.deletingLastPathComponent()
-        let initialDataURL = defaultParentURL.appendingPathComponent("timetable.realm")
         print(initialDataURL)
         let result = realm.objects(TimeTable.self)
         print(result)
@@ -57,6 +58,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 try FileManager.default.copyItem(at: bundleRealmPath!, to: initialDataURL)
             } catch { print("coppy error")}
         }
+        print(Realm.Configuration.defaultConfiguration.fileURL!)
 
         return true
     }
@@ -82,12 +84,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         timeTable.selected = true
         // schemaVersionの設定
         let config = Realm.Configuration(
-            schemaVersion: 3,
+            schemaVersion: 5,
             migrationBlock: { migration, oldSchemaVersion in
-                if (oldSchemaVersion < 3) {
-                    migration.enumerateObjects(ofType: TimeTable.className(), { oldObject, newObject in
-                        newObject!["createdAt"] = Date()
-                    })
+                if (oldSchemaVersion < 5) {
+                    
                 }
             }
         )
