@@ -17,6 +17,7 @@ class TimeTableSearchViewController: UIViewController {
     var searchController:  UISearchController!
     @IBOutlet weak var tableView: UITableView!
     
+    var indexPath: IndexPath!
     var day: String?
     var period: String?
     var classes: [Lesson] = []
@@ -82,6 +83,9 @@ class TimeTableSearchViewController: UIViewController {
                 timeTable.classes.append(registeredClass)
             }
         }
+        let timeTableViewController = navigationController?.viewControllers[0] as! TimeTableViewController
+        timeTableViewController.timeTableCollectionView.reloadItems(at: [indexPath])
+        navigationController?.popViewController(animated: true)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
