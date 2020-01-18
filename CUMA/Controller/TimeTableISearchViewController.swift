@@ -10,18 +10,22 @@
 import UIKit
 import InstantSearchClient
 import SwiftyJSON
+import RealmSwift
 
 class TimeTableSearchViewController: UIViewController {
     
     var searchController:  UISearchController!
     @IBOutlet weak var tableView: UITableView!
     
+    var day: String?
+    var period: String?
     var classes: [Lesson] = []
     let client = Client(appID: "J7JWGV6TIF", apiKey: "b3750fec1bafdbd445f4a15c1c1d7364")
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationItem.title = "\(day!) \(period!)"
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(UINib(nibName: "ClassCell", bundle: nil), forCellReuseIdentifier: "ClassCell")
@@ -44,7 +48,7 @@ class TimeTableSearchViewController: UIViewController {
                 let term = classInfo["term"].arrayValue.map { $0.stringValue }
                 let day_and_period = classInfo["day_and_period"].arrayValue.map { $0.stringValue }
                 let student_year = classInfo["student_year"].arrayValue.map { $0.stringValue }
-                let lesson: Lesson = Lesson(year: classInfo["year"].stringValue, semester: classInfo["semester"].stringValue, term: term, day_and_period: day_and_period, student_year: student_year, course: classInfo["course"].stringValue, teacher: classInfo["teacher"].stringValue, room: classInfo["room"].stringValue, credits: classInfo["credits"].stringValue)
+                let lesson: Lesson = Lesson(id: classInfo["objectID"].stringValue, year: classInfo["year"].intValue, semester: classInfo["semester"].stringValue, term: term, day_and_period: day_and_period, student_year: student_year, course: classInfo["course"].stringValue, teacher: classInfo["teacher"].stringValue, room: classInfo["room"].stringValue, credits: classInfo["credits"].intValue)
                 self.classes.append(lesson)
             }
             self.tableView.reloadData()
@@ -52,19 +56,34 @@ class TimeTableSearchViewController: UIViewController {
     }
     
     @objc func registerClass(_ sender: UIButton) {
-        print("tapped")
-        print(sender.tag)
+        print("register")
+        let lesson = classes[sender.tag]
+        let realm = try! Realm()
+        let timeTable = realm.objects(TimeTable.self).filter("selected = true").first!
+        if let selectedClass = realm.objects(Class.self).filter("id == %@", lesson.id).first {
+            try! realm.write {
+                timeTable.classes.append(selectedClass)
+            }
+        } else {
+            try! realm.write {
+                // Classデータの生成
+                let registeredClass = Class(value: ["id": lesson.id, "year": lesson.year, "semester": lesson.semester, "name": lesson.course, "teacher": lesson.teacher, "room": lesson.room, "credit": lesson.credits, "day": day!, "period": period!])
+                for item in lesson.day_and_period {
+                    registeredClass.dayAndPeriod.append(item)
+                }
+                for item in lesson.term {
+                    registeredClass.term.append(item)
+                }
+                for item in lesson.student_year {
+                    registeredClass.studentYear.append(item)
+                }
+                // Classをrealmに保存しTimeTableのclassesに追加
+                realm.add(registeredClass)
+                timeTable.classes.append(registeredClass)
+            }
+        }
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         print("prepare")
         if segue.identifier == "ClassDetailSegue" {
