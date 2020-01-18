@@ -57,16 +57,16 @@ class TimeTableViewController: UIViewController {
         timeTableCollectionView.collectionViewLayout = createCompositionalLayout()
         super.viewDidLayoutSubviews()
     }
-    
+        
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "TimeTableSearchSegue" {
             let indexPath = sender as! IndexPath
             let timeTableSearchViewController: TimeTableSearchViewController = segue.destination as! TimeTableSearchViewController
             let dayIndex = indexPath.row % (numberOfDays + 1) - 1
             let hourIndex = indexPath.row / (numberOfDays + 1)
+            timeTableSearchViewController.indexPath = (sender as! IndexPath)
             timeTableSearchViewController.day = fullNameDays[dayIndex]
             timeTableSearchViewController.period = hoursName[hourIndex]
-            timeTableSearchViewController.navigationItem.title = "\(fullNameDays[dayIndex]) \(hoursName[hourIndex])"
         }
     }
     
@@ -127,7 +127,6 @@ extension TimeTableViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
- 
         if (indexPath.row % (numberOfDays + 1) == 0) {
             let hourCell = collectionView.dequeueReusableCell(withReuseIdentifier: "HourCell", for: indexPath) as! HourCell
             let hour = indexPath.row / (numberOfDays + 1) + 1
@@ -138,6 +137,14 @@ extension TimeTableViewController: UICollectionViewDataSource {
             return hourCell
         } else {
             let timeTableCell = collectionView.dequeueReusableCell(withReuseIdentifier: "TimeTableCell", for: indexPath) as! TimeTableCell
+            let day = fullNameDays[indexPath.row % (numberOfDays + 1) - 1]
+            let hour = hoursName[indexPath.row / numberOfHours]
+            let realm = try! Realm()
+            let timetable = realm.objects(TimeTable.self).filter("selected == true").first!
+            if let lesson = timetable.classes.filter("day == %@ && period == %@", day, hour).first {
+                timeTableCell.classNameLabel.text = lesson.name
+                timeTableCell.roomLabel.text = lesson.room
+            }
             timeTableCell.backgroundColor = .blue
             return timeTableCell
         }
