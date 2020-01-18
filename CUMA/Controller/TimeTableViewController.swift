@@ -37,10 +37,10 @@ class TimeTableViewController: UIViewController {
         timeTableCollectionView.register(UINib(nibName: "HourCell", bundle: nil), forCellWithReuseIdentifier: "HourCell")
         
         let realm = try! Realm()
-        let timeTable = realm.objects(TimeTable.self).filter("selected == true").first
-        numberOfDays = timeTable!.days
-        numberOfHours = timeTable!.hours
-        navigationItem.title = timeTable!.name
+        let timeTable = realm.objects(TimeTable.self).filter("selected == true").first!
+        numberOfDays = timeTable.days
+        numberOfHours = timeTable.hours
+        navigationItem.title = timeTable.name
 
         switch numberOfDays {
         case 5:
@@ -61,10 +61,12 @@ class TimeTableViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "TimeTableSearchSegue" {
             let indexPath = sender as! IndexPath
-            let timeTableInputViewController: TimeTableSearchViewController = segue.destination as! TimeTableSearchViewController
+            let timeTableSearchViewController: TimeTableSearchViewController = segue.destination as! TimeTableSearchViewController
             let dayIndex = indexPath.row % (numberOfDays + 1) - 1
             let hourIndex = indexPath.row / (numberOfDays + 1)
-            timeTableInputViewController.navigationItem.title = "\(fullNameDays[dayIndex]) \(hoursName[hourIndex])"
+            timeTableSearchViewController.day = fullNameDays[dayIndex]
+            timeTableSearchViewController.period = hoursName[hourIndex]
+            timeTableSearchViewController.navigationItem.title = "\(fullNameDays[dayIndex]) \(hoursName[hourIndex])"
         }
     }
     
