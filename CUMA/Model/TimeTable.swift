@@ -15,4 +15,5 @@ class TimeTable: Object {
     @objc dynamic var hours = 6
     @objc dynamic var selected = false
     @objc dynamic var createdAt =  Date()
+    let classes = List<Class>()
 }
