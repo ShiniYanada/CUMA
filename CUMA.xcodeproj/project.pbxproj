@@ -22,6 +22,7 @@
 		365FAE4223C5FF0E000B7244 /* PickerTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365FAE4123C5FF0E000B7244 /* PickerTextField.swift */; };
 		365FAE4523C601E0000B7244 /* InputPickerViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365FAE4323C601E0000B7244 /* InputPickerViewCell.swift */; };
 		365FAE4623C601E0000B7244 /* InputPickerViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 365FAE4423C601E0000B7244 /* InputPickerViewCell.xib */; };
+		3660F10523CC853F0019CE7E /* Class.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3660F10423CC853F0019CE7E /* Class.swift */; };
 		367A34B1236A774D000458EC /* ClassCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367A34AF236A774D000458EC /* ClassCell.swift */; };
 		367A34B2236A774D000458EC /* ClassCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 367A34B0236A774D000458EC /* ClassCell.xib */; };
 		369D9626237D047E000C2616 /* TimeTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369D9625237D047E000C2616 /* TimeTable.swift */; };
@@ -54,6 +55,7 @@
 		365FAE4123C5FF0E000B7244 /* PickerTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerTextField.swift; sourceTree = "<group>"; };
 		365FAE4323C601E0000B7244 /* InputPickerViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputPickerViewCell.swift; sourceTree = "<group>"; };
 		365FAE4423C601E0000B7244 /* InputPickerViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InputPickerViewCell.xib; sourceTree = "<group>"; };
+		3660F10423CC853F0019CE7E /* Class.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Class.swift; sourceTree = "<group>"; };
 		367A34AF236A774D000458EC /* ClassCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassCell.swift; sourceTree = "<group>"; };
 		367A34B0236A774D000458EC /* ClassCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ClassCell.xib; sourceTree = "<group>"; };
 		369D9625237D047E000C2616 /* TimeTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTable.swift; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 				364229B6236C02D200625188 /* Lesson.swift */,
 				361D8C3923AE4D8F00167385 /* initial-compact.realm */,
 				369D9625237D047E000C2616 /* TimeTable.swift */,
+				3660F10423CC853F0019CE7E /* Class.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -306,6 +309,7 @@
 				36C2B3862361D2B700D5D5CB /* HourCell.swift in Sources */,
 				36C2B367236136AC00D5D5CB /* AppDelegate.swift in Sources */,
 				36517433239E73BA009A54EB /* TimeTableSettingHourItemViewController.swift in Sources */,
+				3660F10523CC853F0019CE7E /* Class.swift in Sources */,
 				361D459E23C067E100FF005D /* CreateTimeTableViewController.swift in Sources */,
 				365FAE4223C5FF0E000B7244 /* PickerTextField.swift in Sources */,
 				367A34B1236A774D000458EC /* ClassCell.swift in Sources */,
