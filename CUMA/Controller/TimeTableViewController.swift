@@ -59,14 +59,24 @@ class TimeTableViewController: UIViewController {
     }
         
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "TimeTableSearchSegue" {
-            let indexPath = sender as! IndexPath
-            let timeTableSearchViewController: TimeTableSearchViewController = segue.destination as! TimeTableSearchViewController
+        let indexPath: IndexPath!
+        var day: String?, hour: String?
+        if sender is IndexPath {
+            indexPath = (sender as! IndexPath)
             let dayIndex = indexPath.row % (numberOfDays + 1) - 1
             let hourIndex = indexPath.row / (numberOfDays + 1)
-            timeTableSearchViewController.indexPath = (sender as! IndexPath)
-            timeTableSearchViewController.day = fullNameDays[dayIndex]
-            timeTableSearchViewController.period = hoursName[hourIndex]
+            day = fullNameDays[dayIndex]
+            hour = hoursName[hourIndex]
+        }
+        // 検索画面遷移では、曜日と時限の文字列、選択されたindexPathを渡す。
+        if segue.identifier == "TimeTableSearchSegue" {
+            let timeTableSearchViewController: TimeTableSearchViewController = segue.destination as! TimeTableSearchViewController
+            timeTableSearchViewController.day = day!
+            timeTableSearchViewController.period = hour!
+        } else if segue.identifier == "RegisteredClassSegue" {
+            let registeredClassViewController: RegisteredClassViewController = segue.destination as! RegisteredClassViewController
+            registeredClassViewController.day = day
+            registeredClassViewController.hour = hour
         }
     }
     
@@ -144,6 +154,9 @@ extension TimeTableViewController: UICollectionViewDataSource {
             if let lesson = timetable.classes.filter("day == %@ && period == %@", day, hour).first {
                 timeTableCell.classNameLabel.text = lesson.name
                 timeTableCell.roomLabel.text = lesson.room
+            } else {
+                timeTableCell.classNameLabel.text = ""
+                timeTableCell.roomLabel.text = ""
             }
             timeTableCell.backgroundColor = .blue
             return timeTableCell
@@ -162,7 +175,12 @@ extension TimeTableViewController: UICollectionViewDelegate {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "TimeTableSearchSegue", sender: indexPath)
+        let item = collectionView.cellForItem(at: indexPath) as! TimeTableCell
+        if item.classNameLabel.text! == "" {
+            performSegue(withIdentifier: "TimeTableSearchSegue", sender: indexPath)
+        } else {
+            performSegue(withIdentifier: "RegisteredClassSegue", sender: indexPath)
+        }
         print("Selected: \(indexPath.row)")
     }
 }
