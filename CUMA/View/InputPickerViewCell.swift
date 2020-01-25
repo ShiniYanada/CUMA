@@ -28,7 +28,7 @@ class InputPickerViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func iniPickerView(pickerData: [String]) {
+    func initPickerView(pickerData: [String]) {
         pickerDataList = pickerData
         inputTextField.text = pickerData[0]
     }

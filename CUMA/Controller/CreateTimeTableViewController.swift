@@ -137,7 +137,7 @@ extension CreateTimeTableViewController: UITableViewDataSource {
         } else {
             let inputCell = tableView.dequeueReusableCell(withIdentifier: "InputPickerCell", for: indexPath) as! InputPickerViewCell
             inputCell.titleLabel.text = titles[section][row]
-            inputCell.iniPickerView(pickerData: pickerDataList[row])
+            inputCell.initPickerView(pickerData: pickerDataList[row])
             return inputCell
         }
     }
