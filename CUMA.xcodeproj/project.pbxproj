@@ -19,6 +19,7 @@
 		36517420239CEEBC009A54EB /* TimeTableSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3651741F239CEEBC009A54EB /* TimeTableSettingViewController.swift */; };
 		3651742E239E11A8009A54EB /* TimeTableSettingDayItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3651742D239E11A8009A54EB /* TimeTableSettingDayItemViewController.swift */; };
 		36517433239E73BA009A54EB /* TimeTableSettingHourItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36517432239E73BA009A54EB /* TimeTableSettingHourItemViewController.swift */; };
+		36593C6523DC12BC00DE7A4D /* RegisteredClassViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36593C6423DC12BC00DE7A4D /* RegisteredClassViewController.swift */; };
 		365FAE4223C5FF0E000B7244 /* PickerTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365FAE4123C5FF0E000B7244 /* PickerTextField.swift */; };
 		365FAE4523C601E0000B7244 /* InputPickerViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365FAE4323C601E0000B7244 /* InputPickerViewCell.swift */; };
 		365FAE4623C601E0000B7244 /* InputPickerViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 365FAE4423C601E0000B7244 /* InputPickerViewCell.xib */; };
@@ -52,6 +53,7 @@
 		3651741F239CEEBC009A54EB /* TimeTableSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableSettingViewController.swift; sourceTree = "<group>"; };
 		3651742D239E11A8009A54EB /* TimeTableSettingDayItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableSettingDayItemViewController.swift; sourceTree = "<group>"; };
 		36517432239E73BA009A54EB /* TimeTableSettingHourItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableSettingHourItemViewController.swift; sourceTree = "<group>"; };
+		36593C6423DC12BC00DE7A4D /* RegisteredClassViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisteredClassViewController.swift; sourceTree = "<group>"; };
 		365FAE4123C5FF0E000B7244 /* PickerTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerTextField.swift; sourceTree = "<group>"; };
 		365FAE4323C601E0000B7244 /* InputPickerViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputPickerViewCell.swift; sourceTree = "<group>"; };
 		365FAE4423C601E0000B7244 /* InputPickerViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InputPickerViewCell.xib; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 				3651741F239CEEBC009A54EB /* TimeTableSettingViewController.swift */,
 				36C2B37A23613A8E00D5D5CB /* TimeTableViewController.swift */,
 				364E00BA237919D40027A053 /* TimeTableListViewController.swift */,
+				36593C6423DC12BC00DE7A4D /* RegisteredClassViewController.swift */,
 				36517432239E73BA009A54EB /* TimeTableSettingHourItemViewController.swift */,
 				3651742D239E11A8009A54EB /* TimeTableSettingDayItemViewController.swift */,
 				361D459D23C067E100FF005D /* CreateTimeTableViewController.swift */,
@@ -301,6 +304,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				36593C6523DC12BC00DE7A4D /* RegisteredClassViewController.swift in Sources */,
 				3607C72C2363E9ED0043C108 /* TimeTableISearchViewController.swift in Sources */,
 				3651742E239E11A8009A54EB /* TimeTableSettingDayItemViewController.swift in Sources */,
 				36517420239CEEBC009A54EB /* TimeTableSettingViewController.swift in Sources */,
