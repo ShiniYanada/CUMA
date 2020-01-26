@@ -30,12 +30,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        let defaultURL = Realm.Configuration.defaultConfiguration.fileURL!
-        let defaultParentURL = defaultURL.deletingLastPathComponent()
-        let initialDataURL = defaultParentURL.appendingPathComponent("timetable.realm")
-        try! FileManager.default.removeItem(at: initialDataURL)
-        let config = Realm.Configuration(fileURL: initialDataURL, deleteRealmIfMigrationNeeded: true)
-        Realm.Configuration.defaultConfiguration = config
+//        let defaultURL = Realm.Configuration.defaultConfiguration.fileURL!
+//        let defaultParentURL = defaultURL.deletingLastPathComponent()
+//        let initialDataURL = defaultParentURL.appendingPathComponent("timetable.realm")
+        Realm.Configuration.defaultConfiguration.deleteRealmIfMigrationNeeded = true
         let realm = try! Realm()
         let timetable = TimeTable(value: ["時間割", 5, 6, true])
         try! realm.write {
