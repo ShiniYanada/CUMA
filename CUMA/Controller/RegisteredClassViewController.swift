@@ -13,20 +13,20 @@ class RegisteredClassViewController: UIViewController {
     
     var lesson: Lesson = Lesson(id: "fdaio", year: 2019, semester: "前期", term: ["jsado"], day_and_period: ["sdf"], student_year: ["fsd"], course: "fds", teacher: "treacher", room: "room", credits: 2)
     @IBOutlet weak var tableView: UITableView!
-    var day: String?
-    var hour: String?
+    var day: String = ""
+    var hour: String = ""
     var indexPath: IndexPath!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "\(day!) \(hour!)"
+        navigationItem.title = "\(day) \(hour)"
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: "InputTableViewCell", bundle: nil), forCellReuseIdentifier: "InputCell")
         // Do any additional setup after loading the view.
         let realm = try! Realm()
         let timeTable = realm.objects(TimeTable.self).filter("selected == true").first!
-        let lesson = timeTable.classes.filter("day == %@ && period == %@", day!, hour!).first!
+        let lesson = timeTable.classes.filter("day == %@ && hour == %@", day, hour).first!
         self.lesson = Lesson(id: lesson.id, year: lesson.year, semester: lesson.semester, term: lesson.term.map {$0}, day_and_period: lesson.dayAndPeriod.map {$0}, student_year: lesson.studentYear.map {$0}, course: lesson.name, teacher: lesson.teacher, room: lesson.room, credits: lesson.credit)
     }
 }

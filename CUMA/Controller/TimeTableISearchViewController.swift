@@ -18,15 +18,15 @@ class TimeTableSearchViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var indexPath: IndexPath!
-    var day: String?
-    var period: String?
+    var day: String = ""
+    var hour: String = ""
     var classes: [Lesson] = []
     let client = Client(appID: "J7JWGV6TIF", apiKey: "b3750fec1bafdbd445f4a15c1c1d7364")
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.title = "\(day!) \(period!)"
+        navigationItem.title = "\(day) \(hour)"
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(UINib(nibName: "ClassCell", bundle: nil), forCellReuseIdentifier: "ClassCell")
@@ -68,7 +68,7 @@ class TimeTableSearchViewController: UIViewController {
         } else {
             try! realm.write {
                 // Classデータの生成
-                let registeredClass = Class(value: ["id": lesson.id, "year": lesson.year, "semester": lesson.semester, "name": lesson.course, "teacher": lesson.teacher, "room": lesson.room, "credit": lesson.credits, "day": day!, "period": period!])
+                let registeredClass = Class(value: ["id": lesson.id, "year": lesson.year, "semester": lesson.semester, "name": lesson.course, "teacher": lesson.teacher, "room": lesson.room, "credit": lesson.credits, "day": day, "hour": hour])
                 for item in lesson.day_and_period {
                     registeredClass.dayAndPeriod.append(item)
                 }

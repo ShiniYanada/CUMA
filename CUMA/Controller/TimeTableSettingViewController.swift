@@ -59,8 +59,8 @@ class TimeTableSettingViewController: UIViewController {
         
         try! realm.write {
             self.timeTable.name = inputCell.inputTextField.text ?? "時間割"
-            self.timeTable.days = (self.timeTableDayIndex != nil) ? self.timeTableDayIndex! + 5 : self.timeTable.days
-            self.timeTable.hours = (timeTableHourIndex != nil) ? self.timeTableHourIndex! + 4 : self.timeTable.hours
+            self.timeTable.day = (self.timeTableDayIndex != nil) ? self.timeTableDayIndex! + 5 : self.timeTable.day
+            self.timeTable.hour = (timeTableHourIndex != nil) ? self.timeTableHourIndex! + 4 : self.timeTable.hour
         }
         //設定した内容に時間割を再表示させる
         timeTableViewController.changeTimeTable()
@@ -74,12 +74,12 @@ class TimeTableSettingViewController: UIViewController {
             let timeTableSettingDayItemViewController: TimeTableSettingDayItemViewController = segue.destination as! TimeTableSettingDayItemViewController
             timeTableSettingDayItemViewController.navigationItem.title = "曜日の変更"
             // dayItemsのIndexを送る
-            timeTableSettingDayItemViewController.dayIndex = timeTableDayIndex ?? timeTable.days - 5
+            timeTableSettingDayItemViewController.dayIndex = timeTableDayIndex ?? timeTable.day - 5
         } else if (segue.identifier == "SellectingPeriodSegue") {
             let timeTableSettingPeriodItemViewController: TimeTableSettingHourItemViewController = segue.destination as! TimeTableSettingHourItemViewController
             timeTableSettingPeriodItemViewController.navigationItem.title = "最大時限数"
             // hourItemsのIndexを送る
-            timeTableSettingPeriodItemViewController.hourIndex = timeTableHourIndex ?? timeTable.hours - 4
+            timeTableSettingPeriodItemViewController.hourIndex = timeTableHourIndex ?? timeTable.hour - 4
         }
     }
 }
@@ -136,9 +136,9 @@ extension TimeTableSettingViewController: UITableViewDataSource {
             cell.textLabel?.text = self.settingTitles[indexPath.section][indexPath.row]
             switch indexPath.row {
             case 0:
-                cell.detailTextLabel?.text = dayItems[timeTableDayIndex ?? timeTable.days - 5]
+                cell.detailTextLabel?.text = dayItems[timeTableDayIndex ?? timeTable.day - 5]
             default:
-                cell.detailTextLabel?.text = hourItems[timeTableHourIndex ?? timeTable.hours - 4]
+                cell.detailTextLabel?.text = hourItems[timeTableHourIndex ?? timeTable.hour - 4]
             }
             return cell
         }

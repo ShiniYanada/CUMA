@@ -38,8 +38,8 @@ class TimeTableViewController: UIViewController {
         
         let realm = try! Realm()
         let timeTable = realm.objects(TimeTable.self).filter("selected == true").first!
-        numberOfDays = timeTable.days
-        numberOfHours = timeTable.hours
+        numberOfDays = timeTable.day
+        numberOfHours = timeTable.hour
         navigationItem.title = timeTable.name
 
         switch numberOfDays {
@@ -58,11 +58,11 @@ class TimeTableViewController: UIViewController {
         super.viewDidLayoutSubviews()
     }
         
+    //画面遷移前の処理
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let indexPath: IndexPath!
-        var day: String?, hour: String?
+        var indexPath: IndexPath!, day: String = "", hour: String = ""
         if sender is IndexPath {
-            indexPath = (sender as! IndexPath)
+            indexPath = sender as? IndexPath
             let dayIndex = indexPath.row % (numberOfDays + 1) - 1
             let hourIndex = indexPath.row / (numberOfDays + 1)
             day = fullNameDays[dayIndex]
@@ -71,12 +71,14 @@ class TimeTableViewController: UIViewController {
         // 検索画面遷移では、曜日と時限の文字列、選択されたindexPathを渡す。
         if segue.identifier == "TimeTableSearchSegue" {
             let timeTableSearchViewController: TimeTableSearchViewController = segue.destination as! TimeTableSearchViewController
-            timeTableSearchViewController.day = day!
-            timeTableSearchViewController.period = hour!
+            timeTableSearchViewController.day = day
+            timeTableSearchViewController.hour = hour
+            timeTableSearchViewController.indexPath = indexPath
         } else if segue.identifier == "RegisteredClassSegue" {
             let registeredClassViewController: RegisteredClassViewController = segue.destination as! RegisteredClassViewController
             registeredClassViewController.day = day
             registeredClassViewController.hour = hour
+            registeredClassViewController.indexPath = indexPath
         }
     }
     
@@ -105,8 +107,8 @@ class TimeTableViewController: UIViewController {
     func changeTimeTable() {
         let realm = try! Realm()
         let timeTable = realm.objects(TimeTable.self).filter("selected = true").first
-        numberOfDays = timeTable!.days
-        numberOfHours = timeTable!.hours
+        numberOfDays = timeTable!.day
+        numberOfHours = timeTable!.hour
         navigationItem.title = timeTable!.name
         switch numberOfDays {
         case 5:
@@ -151,7 +153,7 @@ extension TimeTableViewController: UICollectionViewDataSource {
             let hour = hoursName[indexPath.row / numberOfHours]
             let realm = try! Realm()
             let timetable = realm.objects(TimeTable.self).filter("selected == true").first!
-            if let lesson = timetable.classes.filter("day == %@ && period == %@", day, hour).first {
+            if let lesson = timetable.classes.filter("day == %@ && hour == %@", day, hour).first {
                 timeTableCell.classNameLabel.text = lesson.name
                 timeTableCell.roomLabel.text = lesson.room
             } else {
