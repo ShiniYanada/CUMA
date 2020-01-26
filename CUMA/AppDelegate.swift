@@ -33,31 +33,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let defaultURL = Realm.Configuration.defaultConfiguration.fileURL!
         let defaultParentURL = defaultURL.deletingLastPathComponent()
         let initialDataURL = defaultParentURL.appendingPathComponent("timetable.realm")
-        let config = Realm.Configuration(
-            fileURL: initialDataURL,
-            schemaVersion: 6,
-            migrationBlock: { migration, oldSchemaVersion in
-                if (oldSchemaVersion < 6) {
-                    migration.enumerateObjects(ofType: Class.className(), { oldObject, newObject in
-                        
-                    })
-                }
-            }
-        )
+        try! FileManager.default.removeItem(at: initialDataURL)
+        let config = Realm.Configuration(fileURL: initialDataURL, deleteRealmIfMigrationNeeded: true)
         Realm.Configuration.defaultConfiguration = config
         let realm = try! Realm()
-        print(initialDataURL)
-        let result = realm.objects(TimeTable.self)
-        print(result)
-        if FileManager.default.fileExists(atPath: initialDataURL.path) {
-            print("exist")
-        } else {
-            print("not exist")
-            let bundleRealmPath = Bundle.main.url(forResource: "initial-compact", withExtension: "realm")
-            do {
-                try FileManager.default.copyItem(at: bundleRealmPath!, to: initialDataURL)
-            } catch { print("coppy error")}
+        let timetable = TimeTable(value: ["時間割", 5, 6, true])
+        try! realm.write {
+            realm.add(timetable)
         }
+//        if FileManager.default.fileExists(atPath: initialDataURL.path) {
+//            print("exist")
+//        } else {
+//            print("not exist")
+//            let bundleRealmPath = Bundle.main.url(forResource: "initial-compact", withExtension: "realm")
+//            do {
+//                try FileManager.default.copyItem(at: bundleRealmPath!, to: initialDataURL)
+//            } catch { print("coppy error")}
+//        }
         print(Realm.Configuration.defaultConfiguration.fileURL!)
 
         return true
