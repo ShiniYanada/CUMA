@@ -35,6 +35,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        let initialDataURL = defaultParentURL.appendingPathComponent("timetable.realm")
         Realm.Configuration.defaultConfiguration.deleteRealmIfMigrationNeeded = true
         let realm = try! Realm()
+        try! realm.write {
+            realm.deleteAll()
+        }
         let timetable = TimeTable(value: ["時間割", 5, 6, true])
         try! realm.write {
             realm.add(timetable)
