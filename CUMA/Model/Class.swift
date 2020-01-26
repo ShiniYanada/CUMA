@@ -22,5 +22,5 @@ class Class: Object {
     @objc dynamic var credit = 1
     let timetables = LinkingObjects(fromType: TimeTable.self, property: "classes")
     @objc dynamic var day = "月曜日"
-    @objc dynamic var period = "1限"
+    @objc dynamic var hour = "1限"
 }
