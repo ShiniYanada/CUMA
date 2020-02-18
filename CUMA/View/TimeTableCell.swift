@@ -10,17 +10,11 @@ import UIKit
 
 class TimeTableCell: UICollectionViewCell {
     
-    @IBOutlet weak var classTitleLabel: UILabel!
+    @IBOutlet weak var classNameLabel: UILabel!
+    @IBOutlet weak var roomLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        contentView.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            contentView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            contentView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            contentView.topAnchor.constraint(equalTo: topAnchor),
-            contentView.bottomAnchor.constraint(equalTo: bottomAnchor)
-        ])
         // Initialization code
     }
 

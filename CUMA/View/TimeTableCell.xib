@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,20 +16,36 @@
                 <rect key="frame" x="0.0" y="0.0" width="159" height="145"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hA2-c6-iCi">
-                        <rect key="frame" x="2" y="2" width="155" height="141"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="授業名" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lU3-QP-Y12">
+                        <rect key="frame" x="10" y="15" width="139" height="20.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="教室" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AJP-eP-Gd7">
+                        <rect key="frame" x="10" y="109" width="139" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
             </view>
             <constraints>
-                <constraint firstItem="hA2-c6-iCi" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="2" id="5nY-gL-VfW"/>
-                <constraint firstAttribute="trailing" secondItem="hA2-c6-iCi" secondAttribute="trailing" constant="2" id="6E0-pR-gnB"/>
-                <constraint firstAttribute="bottom" secondItem="hA2-c6-iCi" secondAttribute="bottom" constant="2" id="WBV-9G-Upv"/>
-                <constraint firstItem="hA2-c6-iCi" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="2" id="wo0-ol-nIE"/>
+                <constraint firstItem="lU3-QP-Y12" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="0GP-ry-3re"/>
+                <constraint firstAttribute="bottom" secondItem="AJP-eP-Gd7" secondAttribute="bottom" constant="15" id="2AC-aH-OKd"/>
+                <constraint firstAttribute="trailing" secondItem="lU3-QP-Y12" secondAttribute="trailing" constant="10" id="5tE-iB-Dhj"/>
+                <constraint firstAttribute="trailing" secondItem="AJP-eP-Gd7" secondAttribute="trailing" constant="10" id="Lpv-ol-YZQ"/>
+                <constraint firstItem="lU3-QP-Y12" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="MH7-I5-3eG"/>
+                <constraint firstItem="lU3-QP-Y12" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="15" id="cu8-Bz-dMe"/>
+                <constraint firstItem="AJP-eP-Gd7" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="hq8-8n-K6G"/>
+                <constraint firstItem="AJP-eP-Gd7" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="jc0-nl-K5C"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="159" height="145"/>
+            <connections>
+                <outlet property="classNameLabel" destination="lU3-QP-Y12" id="gtP-in-JvU"/>
+                <outlet property="roomLabel" destination="AJP-eP-Gd7" id="7TO-10-9JL"/>
+            </connections>
             <point key="canvasLocation" x="58.695652173913047" y="168.41517857142856"/>
         </collectionViewCell>
     </objects>

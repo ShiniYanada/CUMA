@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="MOR-j1-BAH">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="MOR-j1-BAH">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -183,6 +183,7 @@
                         <outlet property="dayStackView" destination="0Ci-Cg-k7B" id="tTn-ml-qQB"/>
                         <outlet property="timeTableCollectionView" destination="Ro6-g1-C9w" id="O7z-JZ-AeY"/>
                         <segue destination="RS7-7G-YED" kind="show" identifier="TimeTableSearchSegue" id="828-AI-KBi"/>
+                        <segue destination="12p-KG-e1C" kind="show" identifier="RegisteredClassSegue" id="2lu-Az-d0z"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -243,7 +244,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tai-uV-bQh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1932" y="-808"/>
+            <point key="canvasLocation" x="1890" y="-808"/>
         </scene>
         <!--新しい時間割-->
         <scene sceneID="fNU-1V-kxm">
@@ -280,7 +281,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yez-dx-gKK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2748" y="-808"/>
+            <point key="canvasLocation" x="2774" y="-808"/>
         </scene>
         <!--Time Table Search View Controller-->
         <scene sceneID="ot5-Nw-fx3">
@@ -312,7 +313,65 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZLF-FV-2Fe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2649" y="629"/>
+            <point key="canvasLocation" x="2774" y="853"/>
+        </scene>
+        <!--Registered Class View Controller-->
+        <scene sceneID="Ujy-h7-Cdd">
+            <objects>
+                <viewController id="12p-KG-e1C" customClass="RegisteredClassViewController" customModule="CUMA" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Wd6-we-7is">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="OFL-NB-4Hy">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="r8R-bh-VQw">
+                                        <rect key="frame" x="0.0" y="55.333332061767578" width="414" height="43.666667938232422"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="r8R-bh-VQw" id="2Nt-2M-iXE">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="Whp-bD-QmC">
+                                        <rect key="frame" x="0.0" y="99" width="414" height="43.666667938232422"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Whp-bD-QmC" id="LuH-pA-8V3">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="6kN-qA-uxi">
+                                        <rect key="frame" x="0.0" y="142.66666793823242" width="414" height="43.666667938232422"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6kN-qA-uxi" id="kBj-7G-pOd">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <sections/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Fhk-z1-TGx" firstAttribute="trailing" secondItem="OFL-NB-4Hy" secondAttribute="trailing" id="68e-5k-6Se"/>
+                            <constraint firstItem="OFL-NB-4Hy" firstAttribute="leading" secondItem="Fhk-z1-TGx" secondAttribute="leading" id="eiR-mG-5Sm"/>
+                            <constraint firstItem="OFL-NB-4Hy" firstAttribute="top" secondItem="Fhk-z1-TGx" secondAttribute="top" id="fk2-So-tQR"/>
+                            <constraint firstItem="Fhk-z1-TGx" firstAttribute="bottom" secondItem="OFL-NB-4Hy" secondAttribute="bottom" id="on8-0B-xdt"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Fhk-z1-TGx"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="EMc-6Y-ItD"/>
+                    <connections>
+                        <outlet property="tableView" destination="OFL-NB-4Hy" id="mVx-hw-dcK"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eJE-k6-oFa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1890" y="1355"/>
         </scene>
         <!--Class Detail View Controller-->
         <scene sceneID="XB5-im-Jl3">
@@ -326,7 +385,7 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ClassInfo" textLabel="1MS-OO-71T" detailTextLabel="c5Q-LJ-Iac" style="IBUITableViewCellStyleValue1" id="Mtl-ZP-BdV">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ClassInfo" textLabel="1MS-OO-71T" detailTextLabel="c5Q-LJ-Iac" style="IBUITableViewCellStyleValue1" id="Mtl-ZP-BdV">
                                         <rect key="frame" x="0.0" y="55.333332061767578" width="414" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Mtl-ZP-BdV" id="KGX-hN-4zc">
@@ -369,7 +428,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aFL-1t-GXh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3487" y="629"/>
+            <point key="canvasLocation" x="3612" y="853"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="SNL-Ib-Dq1">
@@ -471,7 +530,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pzy-Yd-Lfw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3141" y="7"/>
+            <point key="canvasLocation" x="2774" y="113"/>
         </scene>
         <!--Time Table Setting Hour Item View Controller-->
         <scene sceneID="MS9-La-SEj">
@@ -521,7 +580,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7qy-XT-kBD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4265" y="297"/>
+            <point key="canvasLocation" x="4264" y="275"/>
         </scene>
         <!--Time Table Setting Day Item View Controller-->
         <scene sceneID="uQG-kZ-RdO">
@@ -589,7 +648,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jvS-Lu-Nvb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1136" y="-807"/>
+            <point key="canvasLocation" x="1048" y="-808"/>
         </scene>
     </scenes>
 </document>

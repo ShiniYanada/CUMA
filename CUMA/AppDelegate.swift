@@ -30,33 +30,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        let config = Realm.Configuration(
-            schemaVersion: 3,
-            migrationBlock: { migration, oldSchemaVersion in
-                if (oldSchemaVersion < 3) {
-                    migration.enumerateObjects(ofType: TimeTable.className(), { oldObject, newObject in
-                        newObject!["createdAt"] = Date()
-                    })
-                }
-            }
-        )
-        Realm.Configuration.defaultConfiguration = config
+//        let defaultURL = Realm.Configuration.defaultConfiguration.fileURL!
+//        let defaultParentURL = defaultURL.deletingLastPathComponent()
+//        let initialDataURL = defaultParentURL.appendingPathComponent("timetable.realm")
+        Realm.Configuration.defaultConfiguration.deleteRealmIfMigrationNeeded = true
         let realm = try! Realm()
-        let defaultURL = Realm.Configuration.defaultConfiguration.fileURL!
-        let defaultParentURL = defaultURL.deletingLastPathComponent()
-        let initialDataURL = defaultParentURL.appendingPathComponent("timetable.realm")
-        print(initialDataURL)
-        let result = realm.objects(TimeTable.self)
-        print(result)
-        if FileManager.default.fileExists(atPath: initialDataURL.path) {
-            print("exist")
-        } else {
-            print("not exist")
-            let bundleRealmPath = Bundle.main.url(forResource: "initial-compact", withExtension: "realm")
-            do {
-                try FileManager.default.copyItem(at: bundleRealmPath!, to: initialDataURL)
-            } catch { print("coppy error")}
+        try! realm.write {
+            realm.deleteAll()
         }
+        let timetable = TimeTable(value: ["時間割", 5, 6, true])
+        try! realm.write {
+            realm.add(timetable)
+        }
+//        if FileManager.default.fileExists(atPath: initialDataURL.path) {
+//            print("exist")
+//        } else {
+//            print("not exist")
+//            let bundleRealmPath = Bundle.main.url(forResource: "initial-compact", withExtension: "realm")
+//            do {
+//                try FileManager.default.copyItem(at: bundleRealmPath!, to: initialDataURL)
+//            } catch { print("coppy error")}
+//        }
+        print(Realm.Configuration.defaultConfiguration.fileURL!)
 
         return true
     }
@@ -82,12 +77,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         timeTable.selected = true
         // schemaVersionの設定
         let config = Realm.Configuration(
-            schemaVersion: 3,
+            schemaVersion: 5,
             migrationBlock: { migration, oldSchemaVersion in
-                if (oldSchemaVersion < 3) {
-                    migration.enumerateObjects(ofType: TimeTable.className(), { oldObject, newObject in
-                        newObject!["createdAt"] = Date()
-                    })
+                if (oldSchemaVersion < 5) {
+                    
                 }
             }
         )

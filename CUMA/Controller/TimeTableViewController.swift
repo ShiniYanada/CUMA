@@ -37,10 +37,10 @@ class TimeTableViewController: UIViewController {
         timeTableCollectionView.register(UINib(nibName: "HourCell", bundle: nil), forCellWithReuseIdentifier: "HourCell")
         
         let realm = try! Realm()
-        let timeTable = realm.objects(TimeTable.self).filter("selected == true").first
-        numberOfDays = timeTable!.days
-        numberOfHours = timeTable!.hours
-        navigationItem.title = timeTable!.name
+        let timeTable = realm.objects(TimeTable.self).filter("selected == true").first!
+        numberOfDays = timeTable.day
+        numberOfHours = timeTable.hour
+        navigationItem.title = timeTable.name
 
         switch numberOfDays {
         case 5:
@@ -57,14 +57,28 @@ class TimeTableViewController: UIViewController {
         timeTableCollectionView.collectionViewLayout = createCompositionalLayout()
         super.viewDidLayoutSubviews()
     }
-    
+        
+    //画面遷移前の処理
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "TimeTableSearchSegue" {
-            let indexPath = sender as! IndexPath
-            let timeTableInputViewController: TimeTableSearchViewController = segue.destination as! TimeTableSearchViewController
+        var indexPath: IndexPath!, day: String = "", hour: String = ""
+        if sender is IndexPath {
+            indexPath = sender as? IndexPath
             let dayIndex = indexPath.row % (numberOfDays + 1) - 1
             let hourIndex = indexPath.row / (numberOfDays + 1)
-            timeTableInputViewController.navigationItem.title = "\(fullNameDays[dayIndex]) \(hoursName[hourIndex])"
+            day = fullNameDays[dayIndex]
+            hour = hoursName[hourIndex]
+        }
+        // 検索画面遷移では、曜日と時限の文字列、選択されたindexPathを渡す。
+        if segue.identifier == "TimeTableSearchSegue" {
+            let timeTableSearchViewController: TimeTableSearchViewController = segue.destination as! TimeTableSearchViewController
+            timeTableSearchViewController.day = day
+            timeTableSearchViewController.hour = hour
+            timeTableSearchViewController.indexPath = indexPath
+        } else if segue.identifier == "RegisteredClassSegue" {
+            let registeredClassViewController: RegisteredClassViewController = segue.destination as! RegisteredClassViewController
+            registeredClassViewController.day = day
+            registeredClassViewController.hour = hour
+            registeredClassViewController.indexPath = indexPath
         }
     }
     
@@ -93,8 +107,8 @@ class TimeTableViewController: UIViewController {
     func changeTimeTable() {
         let realm = try! Realm()
         let timeTable = realm.objects(TimeTable.self).filter("selected = true").first
-        numberOfDays = timeTable!.days
-        numberOfHours = timeTable!.hours
+        numberOfDays = timeTable!.day
+        numberOfHours = timeTable!.hour
         navigationItem.title = timeTable!.name
         switch numberOfDays {
         case 5:
@@ -125,7 +139,6 @@ extension TimeTableViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
- 
         if (indexPath.row % (numberOfDays + 1) == 0) {
             let hourCell = collectionView.dequeueReusableCell(withReuseIdentifier: "HourCell", for: indexPath) as! HourCell
             let hour = indexPath.row / (numberOfDays + 1) + 1
@@ -136,6 +149,17 @@ extension TimeTableViewController: UICollectionViewDataSource {
             return hourCell
         } else {
             let timeTableCell = collectionView.dequeueReusableCell(withReuseIdentifier: "TimeTableCell", for: indexPath) as! TimeTableCell
+            let day = fullNameDays[indexPath.row % (numberOfDays + 1) - 1]
+            let hour = hoursName[indexPath.row / numberOfHours]
+            let realm = try! Realm()
+            let timetable = realm.objects(TimeTable.self).filter("selected == true").first!
+            if let lesson = timetable.classes.filter("day == %@ && hour == %@", day, hour).first {
+                timeTableCell.classNameLabel.text = lesson.name
+                timeTableCell.roomLabel.text = lesson.room
+            } else {
+                timeTableCell.classNameLabel.text = ""
+                timeTableCell.roomLabel.text = ""
+            }
             timeTableCell.backgroundColor = .blue
             return timeTableCell
         }
@@ -153,7 +177,12 @@ extension TimeTableViewController: UICollectionViewDelegate {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "TimeTableSearchSegue", sender: indexPath)
+        let item = collectionView.cellForItem(at: indexPath) as! TimeTableCell
+        if item.classNameLabel.text! == "" {
+            performSegue(withIdentifier: "TimeTableSearchSegue", sender: indexPath)
+        } else {
+            performSegue(withIdentifier: "RegisteredClassSegue", sender: indexPath)
+        }
         print("Selected: \(indexPath.row)")
     }
 }

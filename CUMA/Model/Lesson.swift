@@ -9,7 +9,8 @@
 import Foundation
 
 struct Lesson {
-    var year: String
+    var id: String
+    var year: Int
     var semester: String
     var term: [String]
     var day_and_period: [String]
@@ -17,5 +18,5 @@ struct Lesson {
     var course: String
     var teacher: String
     var room: String
-    var credits: String
+    var credits: Int
 }

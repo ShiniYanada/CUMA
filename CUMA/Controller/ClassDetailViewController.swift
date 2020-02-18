@@ -51,7 +51,7 @@ extension ClassDetailViewController: UITableViewDataSource {
         switch indexPath.row {
         case 0:
             cell.textLabel?.text = "年度"
-            cell.detailTextLabel?.text = lesson.year
+            cell.detailTextLabel?.text = String(lesson.year)
         case 1:
             cell.textLabel?.text = "学期"
             cell.detailTextLabel?.text = lesson.semester
@@ -75,7 +75,7 @@ extension ClassDetailViewController: UITableViewDataSource {
             cell.detailTextLabel?.text = lesson.room
         case 8:
             cell.textLabel?.text = "単位数"
-            cell.detailTextLabel?.text = lesson.credits
+            cell.detailTextLabel?.text = String(lesson.credits)
         default:
             cell.textLabel?.text = ""
             cell.detailTextLabel?.text = ""
